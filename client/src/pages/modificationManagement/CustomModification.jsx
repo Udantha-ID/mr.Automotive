@@ -403,15 +403,21 @@ const CustomModification = () => {
                     name="customerEmail"
                     value={formik.values.customerEmail}
                     onChange={formik.handleChange}
+                    onKeyDown={(e) => {
+                      // Allow letters, numbers, backspace, tab, and '@' and '.'
+                      const allowedKeys = /^[a-zA-Z0-9@.]+$/;
+                      if (!allowedKeys.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+                        e.preventDefault();
+                      }
+                    }}
                     className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                     required
                   />
                   {formik.errors.customerEmail && (
-                    <div className="text-red-500 text-sm">
-                      {formik.errors.customerEmail}
-                    </div>
+                    <div className="text-red-500 text-sm">{formik.errors.customerEmail}</div>
                   )}
                 </div>
+
               </div>
               {/* Row 2 */}
               <div className="flex flex-wrap -mx-2 mb-4">
