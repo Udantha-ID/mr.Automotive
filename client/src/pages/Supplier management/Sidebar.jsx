@@ -60,7 +60,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
       path: "/Supplier-management/manage-request-item",
       icon: <FaClipboardList />,
     },
-    { name: "Profile", path: "/manager/profile", icon: <FaUserCircle /> },
+    //{ name: "Profile", path: "/manager/profile", icon: <FaUserCircle /> },
   ];
 
   return (
