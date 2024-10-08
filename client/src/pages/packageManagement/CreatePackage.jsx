@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import { storage, ref, uploadBytes, getDownloadURL } from "./../../firebase";
 import axios from "axios";
 import classNames from "classnames";
 
 const CreatePackage = () => {
+  const navigate = useNavigate();
   const [pkgID, setPkgId] = useState("");
   const [pkgName, setPkgName] = useState("");
   const [pkgDes, setPkgDes] = useState("");
@@ -120,12 +122,14 @@ const CreatePackage = () => {
         icon: "success",
       });
       console.log(imageUrl);
+      navigate("/admin/pkg");
     } catch (error) {
       Swal.fire({
         title: "Error!",
         text: "Failed to add Package.",
         icon: "error",
       });
+      navigate("/admin/pkg");
     } finally {
       setLoading(false);
     }

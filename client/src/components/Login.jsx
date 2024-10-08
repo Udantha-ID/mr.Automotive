@@ -55,9 +55,19 @@ const Login = () => {
       return;
     }
     else if (
+      formData.email.toLowerCase() === "admin@gmail.com" &&
+      formData.password === "admin123"
+    ) {
+      // Navigate to admin page
+      navigate("/admin/");
+      return;
+    }
+    else if (
       formData.email.toLowerCase() === "employee@gmail.com" &&
       formData.password === "employee123"
-    ) {
+    ) 
+    
+    {
       // Navigate to Employee management page
       Swal.fire({
         title: 'Hi Udantha',
