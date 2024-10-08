@@ -156,7 +156,12 @@ const AddSparePartPage = () => {
               type="text"
               className="w-full p-2 border border-dark rounded"
               value={partName}
-              onChange={(e) => setPartName(e.target.value)}
+              onChange={(e) => {
+                const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                if (regex.test(e.target.value)) {
+                  setPartName(e.target.value);
+                }
+              }}
               required
             />
           </div>
@@ -288,9 +293,8 @@ const AddSparePartPage = () => {
           </div>
           <button
             type="submit"
-            className={`w-full p-2 border border-dark rounded ${
-              loading ? "bg-gray-500" : "bg-blue-500 text-white"
-            }`}
+            className={`w-full p-2 border border-dark rounded ${loading ? "bg-gray-500" : "bg-blue-500 text-white"
+              }`}
             disabled={loading}
           >
             {loading ? "Submitting..." : "Add Spare Part"}
