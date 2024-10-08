@@ -68,7 +68,7 @@ const AddSupplierPage = () => {
         ContactNo: contactNo,
         Email: email,
         Address: address,
-        Companyname
+        Companyname:Companyname,
       });
 
       Swal.fire({
