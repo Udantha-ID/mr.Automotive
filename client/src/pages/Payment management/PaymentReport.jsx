@@ -182,7 +182,7 @@ const PaymentReport = () => {
   }
 
   return (
-    <div className="p-6 bg-PColor rounded-lg shadow-lg">
+    <div className="p-6 bg-BColor rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-dark mb-4">Payment Report</h2>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
