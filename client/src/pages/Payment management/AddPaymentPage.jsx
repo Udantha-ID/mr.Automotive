@@ -309,7 +309,7 @@ const AddPaymentPage = () => {
             <input
               type="number"
               className="w-full p-2 border border-dark rounded"
-              value={Pamount}
+              value={parseFloat(Pamount).toFixed(2)}
               readOnly
             />
           </div>

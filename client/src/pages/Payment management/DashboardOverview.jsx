@@ -170,7 +170,7 @@ const ShowPayment = () => {
                         {payment.Package}
                       </td>
                       <td className="py-3 px-5 text-extraDarkColor">
-                      Rs.{payment.Pamount}
+                      Rs.{Number(payment.Pamount).toFixed(2)} 
                       </td>
                       <td className="py-3 px-5 text-extraDarkColor">
                         {payment.email}
@@ -186,10 +186,10 @@ const ShowPayment = () => {
               </h2>
               <div className="max-h-96 overflow-y-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                  <thead className="bg-DarkColor text-white">
+                  <thead className="bg-DarkColor text-white center">
                     <tr>
                       <th>Employee Name</th>
-                      <th>NIC</th>
+                      <th>NIC Number</th>
                       <th>From Date</th>
                       <th>To Date</th>
                       <th>Total OT Hours</th>
@@ -221,13 +221,13 @@ const ShowPayment = () => {
                           {sal.totalOtHours}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                        Rs.{sal.totalOtAmount}
+                        Rs.{Number(sal.totalOtAmount).toFixed(2)}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                        Rs.{sal.basicSalary}
+                        Rs.{Number(sal.basicSalary).toFixed(2)}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                        Rs.{sal.totalSalary}
+                        Rs.{Number(sal.totalSalary).toFixed(2)}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
                           <select

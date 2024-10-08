@@ -52,54 +52,99 @@ const PaymentReport = () => {
     }
   }, [paymentData]);
 
+
   const generatePDF = () => {
-    const doc = new jsPDF();
+  const doc = new jsPDF();
 
-    // Check if the logo exists before trying to add it
-    if (companyLogoBase64) {
-      doc.addImage(companyLogoBase64, "PNG", 10, 10, 30, 30);
-    } else {
-      console.warn("Company logo not found.");
-    }
+  // Check if the logo exists before trying to add it
+  if (companyLogoBase64) {
+    doc.addImage(companyLogoBase64, "PNG", 80, 10, 50, 20);
+  } else {
+    console.warn("Company logo not found.");
+  }
 
-    doc.setFontSize(18);
-    doc.text("Payment Report", 75, 20);
+  // Title and Subtitles
+  doc.setFontSize(22).setFont('helvetica', 'bold').setTextColor('#000000');
+  doc.text('Payment Report', 105, 40, { align: 'center' });
 
-    // Add report details
-    doc.setFontSize(12);
-    doc.text(`Total Payments: Rs.${totalPayments.toFixed(2)}`, 10, 50);
-    doc.text(`Average Payment: Rs.${averagePayment.toFixed(2)}`, 10, 60);
+  doc.setFontSize(16).setFont('helvetica', 'normal');
+  doc.text('Mr. Automotive Vehicle Service', 105, 50, { align: 'center' });
+  doc.text('Service, Gampaha', 105, 55, { align: 'center' });
 
-    // Add table
-    if (Array.isArray(paymentData)) {
-      doc.autoTable({
-        head: [
-          ["Payment ID", "Customer Name", "Vehicle Number", "Payment Date", "Payment Method","Package", "Amount"],
+  // Report Date
+  const reportDate = new Date().toLocaleDateString();
+  doc.setFontSize(12);
+  doc.text(`Report Date: ${reportDate}`, 10, 70);
+  
+  // Summary Section
+  doc.setFontSize(14).setFont('helvetica', 'bold');
+  doc.text('Summary', 10, 85);
+
+  doc.setFontSize(12);
+  doc.text(`Total Payments: Rs. ${totalPayments.toFixed(2)}`, 10, 95);
+  doc.text(`Average Payment: Rs. ${averagePayment.toFixed(2)}`, 10, 105);
+
+  // Add a line to separate sections
+  doc.setDrawColor(200);
+  doc.line(10, 110, 200, 110);
+
+  // Table Section
+  doc.setFontSize(14).setFont('helvetica', 'bold');
+  doc.text('Payment Details', 10, 120);
+
+  if (Array.isArray(paymentData) && paymentData.length > 0) {
+    doc.autoTable({
+      head: [
+        [
+          { content: "Payment ID", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Customer Name", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Vehicle Number", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Payment Date", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Payment Method", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Package", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
+          { content: "Amount", styles: { fillColor: [52, 152, 219], textColor: [255, 255, 255], fontStyle: 'bold' } },
         ],
-        body: paymentData.map((payment) => [
-          payment.PaymentId,
-          payment.cusName,
-          payment.Vehicle_Number,
-          payment.PaymentDate,
-          payment.PaymentMethod,
-          // payment.Booking_Id,
-          payment.Package || "N/A",
-          `Rs.${(payment.Pamount || 0).toFixed(2)}`,
-        ]),
-        startY: 70,
-      });
-    }
+      ],
+      body: paymentData.map((payment) => [
+        payment.PaymentId,
+        payment.cusName,
+        payment.Vehicle_Number,
+        payment.PaymentDate,
+        payment.PaymentMethod,
+        payment.Package || "N/A",
+        `Rs. ${(payment.Pamount || 0).toFixed(2)}`,
+      ]),
+      startY: 125,
+      margin: { horizontal: 10 },
+      styles: {
+        overflow: 'linebreak',
+        cellPadding: 5,
+        fontSize: 10, // Set smaller text size here
+        textColor: [0, 0, 0],
+        minCellHeight: 10,
+      },
+      headStyles: {
+        fillColor: [52, 152, 219], // Header background color
+      },
+      alternateRowStyles: {
+        fillColor: [240, 240, 240], // Light gray for alternate rows
+      },
+      theme: 'striped', // Optional: adds striped rows for better readability
+    });
+  } else {
+    doc.text("No payment data available.", 10, 130);
+  }
 
-    // Add signature at the bottom
-    doc.text(
-      "Authorized Signature: ____________________",
-      10,
-      doc.internal.pageSize.height - 20
-    );
+  // Add a line for the signature
+  doc.line(10, doc.internal.pageSize.height - 40, 200, doc.internal.pageSize.height - 40);
+  doc.text("Authorized Signature: ____________________", 10, doc.internal.pageSize.height - 30);
 
-    // Save the PDF
-    doc.save("payment_report.pdf");
-  };
+  // Save the PDF
+  doc.save("payment_report.pdf");
+};
+
+  
+  
 
   const generateCSV = () => {
     const csvData = [
@@ -216,7 +261,7 @@ const PaymentReport = () => {
                     <td className="py-2 px-4">{payment.PaymentMethod}</td>
                     <td className="py-2 px-4">{payment.Booking_Id}</td>
                     <td className="py-2 px-4">{payment.Package || "N/A"}</td>
-                    <td className="py-2 px-4">Rs.{(payment.Pamount || 0).toFixed(2)}</td>
+                    <td className="py-3 px-5">Rs.{Number(payment.Pamount).toFixed(2)}</td>
                   </tr>
                 ))
               ) : (

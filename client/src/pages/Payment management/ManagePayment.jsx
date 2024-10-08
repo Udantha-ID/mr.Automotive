@@ -110,7 +110,7 @@ const handleGeneratePDF = () => {
   });
 
   if (companyLogoBase64) {
-    doc.addImage(companyLogoBase64, "PNG", 100, 10, 30, 30);
+    doc.addImage(companyLogoBase64, "PNG", 10, 10, 50, 20);
   } else {
     console.warn("Company logo not found.");
   }
@@ -196,7 +196,7 @@ const handleGeneratePDF = () => {
                   <td className="py-3 px-5">{payment.PaymentMethod}</td>
                   {/* <td className="py-3 px-5">{payment.Booking_Id}</td> */}
                   <td className="py-3 px-5">{payment.Package}</td>
-                  <td className="py-3 px-5">Rs.{payment.Pamount}</td>
+                  <td className="py-3 px-5">Rs.{Number(payment.Pamount).toFixed(2)}</td>
                   <td className="py-3 px-5">{payment.email}</td>
                   <td className="py-3 px-5">
                     <div className="flex items-center">
@@ -272,8 +272,9 @@ const handleGeneratePDF = () => {
                 <strong>Package:</strong> {selectedPayment.Package}
               </p>
               <p className="mb-2">
-                <strong>Package Amount:</strong> {selectedPayment.Pamount}
+             <strong>Package Amount:</strong> Rs. {selectedPayment.Pamount.toFixed(2)}
               </p>
+
               <p className="mb-2">
                 <strong>Customer Email:</strong> {selectedPayment.email}
               </p>
