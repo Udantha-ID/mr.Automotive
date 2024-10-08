@@ -147,7 +147,7 @@ const ShowAllPackages = () => {
         <div className="flex items-center space-x-4">
           <PDFDownloadLink
             document={<PackageReport packages={filteredPkg} />}
-            fileName="filtered-packages.pdf"
+            fileName="maintenance-packages.pdf"
           >
             {({ loading }) => (
               <button
