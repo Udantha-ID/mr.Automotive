@@ -1,0 +1,19 @@
+/* Fact.css */
+
+.fact {
+  background-color: #333; /* Dark background */
+}
+
+.icon {
+  font-size: 3rem; /* Increase icon size */
+  display: inline-block;
+}
+
+h2 {
+  font-weight: bold; /* Make number bold */
+  font-size: 2.5rem; /* Increase font size */
+}
+
+p {
+  font-size: 1.2rem; /* Adjust font size for text */
+}

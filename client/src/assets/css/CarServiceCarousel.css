@@ -1,0 +1,30 @@
+.carousel-item-custom {
+  height: 100vh; /* Adjust height as needed */
+}
+
+.carousel-item-custom img {
+  height: 100%;
+  object-fit: cover; /* Ensure background image covers the container */
+}
+
+.caption-custom {
+  position: absolute;
+  bottom: 20%; /* Adjust this value to move content upwards */
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.carousel-control-custom {
+  width: 5%; /* Adjust width as needed */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Adjust background color for better visibility */
+}

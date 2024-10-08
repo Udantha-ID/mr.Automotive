@@ -1,0 +1,16 @@
+.position-relative {
+  position: relative;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.text-primary {
+  color: #007bff; /* Adjust based on your theme */
+}
+
+.bg-light {
+  background-color: #f8f9fa; /* Adjust based on your theme */
+}

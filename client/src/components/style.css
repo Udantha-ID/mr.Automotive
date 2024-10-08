@@ -1,0 +1,30 @@
+.css-dip3t8 {
+  background-color: transparent !important; /* Removes the background color */
+}
+
+/* Sidebar footer styling */
+.sidebar-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #8ba1b7;
+  text-align: center;
+  padding: 10px;
+  /* Optional: border to separate from the content */
+}
+
+.sidebar-menu-item:hover {
+  background-color: #1f2a38; /* Darker background on hover */
+  color: #ffffff; /* Change text color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Styles for sidebar submenus */
+.sidebar-submenu {
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for submenu items */
+.sidebar-submenu:hover {
+  color: black;
+}

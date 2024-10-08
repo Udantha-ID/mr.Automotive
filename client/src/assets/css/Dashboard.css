@@ -1,0 +1,230 @@
+body{
+    background-color: #ffffff;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .actions .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+  
+  .search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #608ebd;
+    color: white;
+  }
+  
+  .action-icons {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+
+  /*Add Employee*/
+  .form-container {
+    padding: 15px;
+    max-width: 600px; 
+    margin: 0 auto;
+  }
+  
+  .form-title {
+    font-size: 1.75rem;
+    margin: 15px 0;
+    color: #333;
+    text-align: center;
+  }
+  
+  .form-content {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #38bdf8; 
+    border-radius: 10px;
+    height: 830px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+    color: #6b7280;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #6b7280;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus {
+    border-color: #38bdf8;
+    outline: none;
+  }
+  
+  .form-button {
+    padding: 8px 16px;
+    background-color: #38bdf8;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    margin: 15px auto;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .form-button:hover {
+    background-color: #0284c7;
+    transform: translateY(-2px);
+  }
+  
+  /*Attendence Css*/
+
+  .attendance-container {
+    padding: 20px;
+    max-width: 600px; /* Responsive width */
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-title {
+    font-size: 1.75rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    font-size: 1rem;
+    color: #6b7280; /* Gray color */
+    margin-bottom: 6px;
+}
+
+.form-select,
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #6b7280; /* Gray border */
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #38bdf8; /* Sky blue focus */
+    outline: none;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #38bdf8; /* Sky blue background */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0284c7; /* Darker sky blue */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    background-color: #6b7280; /* Gray background */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563; /* Darker gray */
+    transform: translateY(-2px);
+}
+
+  
+  
