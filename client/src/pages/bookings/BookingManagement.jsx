@@ -176,7 +176,7 @@ const BookingManagement = () => {
               setStartDate(null); // Clear Start Date
               setEndDate(null);   // Clear End Date
             }}
-            className="mt-2 p-2 bg-gray-300 rounded hover:bg-blue-400"
+            className="mt-2 p-2 bg-gray-300 rounded hover:bg-red-500"
           >
             Clear Date
           </button>
@@ -187,8 +187,6 @@ const BookingManagement = () => {
               End date should be greater than Start Date
             </p>
           )}
-           
-
         </LocalizationProvider>
       </div>
 
