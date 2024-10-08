@@ -188,6 +188,7 @@ const CreatePackage = () => {
               className={classNames("w-full p-2 border rounded")}
               value={pkgExp}
               onChange={(e) => setPkgExp(e.target.value)}
+              min={new Date().toISOString().split("T")[0]} // prevents past dates
               required
             />
             {formErrors.pkgName && (
@@ -228,7 +229,6 @@ const CreatePackage = () => {
             {pkgServ.map((pkg, index) => (
               <div key={pkg.id}>
                 <div className="mb-2 flex items-center">
-                  
                   <input
                     type="text"
                     className="w-1/2 p-2 border border-dark rounded"
@@ -237,12 +237,11 @@ const CreatePackage = () => {
                     onChange={(e) => {
                       const value = e.target.value;
                       if (/^\d*$/.test(value)) {
-                        handleServiceChange(pkg.id, "key", value); 
+                        handleServiceChange(pkg.id, "key", value);
                       }
                     }}
                   />
 
-                  
                   <input
                     type="text"
                     className="w-1/2 p-2 border border-dark rounded ml-2"
@@ -256,7 +255,6 @@ const CreatePackage = () => {
                     }}
                   />
 
-                
                   <button
                     type="button"
                     className="ml-2 text-red-500"
@@ -266,7 +264,6 @@ const CreatePackage = () => {
                   </button>
                 </div>
 
-                
                 {formErrors[`serviceName${index}`] && (
                   <span className="text-red-500 text-sm">
                     {formErrors[`serviceName${index}`]}
@@ -275,7 +272,6 @@ const CreatePackage = () => {
               </div>
             ))}
 
-            
             <button
               type="button"
               className="text-blue-500"

@@ -57,7 +57,7 @@ const Packages = () => {
               onClick={handleClickCard}
             >
               <h4 className="bg-blue-500 text-white font-bold py-2 px-4 w-36 absolute">
-                {calculateRemainingDays(pkg.pkgExp)} days left
+                {calculateRemainingDays(pkg.pkgExp)} days Remaining
               </h4>
               <img
                 src={pkg.imageURL}
