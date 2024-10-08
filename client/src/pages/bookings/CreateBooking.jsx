@@ -113,6 +113,8 @@ const CreateBooking = () => {
     }));
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -141,6 +143,7 @@ const CreateBooking = () => {
         updatedBookingData
       );
       console.log(updatedBookingData);
+
       Swal.fire({
         title: "Success!",
         text: "Booking Successfully Created.",
@@ -207,7 +210,7 @@ const CreateBooking = () => {
             <form onSubmit={handleSubmit} className="w-5/6 rigth-0">
               <div className=" bg-slate-200 p-4 rounded-2xl shadow-sm">
                 <h2 className="text-2xl font-bold mb-5">
-                  Section 1: General Information
+                  General Information
                 </h2>
 
                 <div className="flex items-center justify-between mb-4">
@@ -247,7 +250,11 @@ const CreateBooking = () => {
                       name="cusMobile"
                       className="border border-gray-300 rounded-md p-2 bg-gray-100"
                       value={bookingData.cusMobile}
-                      onChange={handleBookingChange}
+                      onChange={(e) => {
+                        // Allow only numbers
+                        const numbersOnly = e.target.value.replace(/[^0-9]/g, "");
+                        handleBookingChange({ target: { name: "cusMobile", value: numbersOnly } });
+                      }}
                       required
                     />
                     {formErrors.cusMobile && (
@@ -256,6 +263,7 @@ const CreateBooking = () => {
                       </span>
                     )}
                   </div>
+
                   <div className="flex flex-col w-1/6 mr-5">
                     <label className="block text-gray-700 required">
                       Vehicle Type:
@@ -265,19 +273,26 @@ const CreateBooking = () => {
                       name="vType"
                       className="border border-gray-300 rounded-md p-2 bg-gray-100"
                       value={bookingData.vType}
-                      onChange={handleBookingChange}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        // Allow only letters (uppercase and lowercase)
+                        if (/^[A-Za-z]*$/.test(value)) {
+                          handleBookingChange(e);
+                        }
+                      }}
                       required
                     />
                   </div>
+
                   <div className="flex flex-col w-1/4">
-                    <div className="flex">
+                    {/*<div className="flex">
                       <label>SRI Format: </label>
                       <Switch
                         checked={checked}
                         onChange={handleChangee}
                         inputProps={{ "aria-label": "controlled" }}
                       />
-                    </div>
+                    </div>*/}
                     <label className="block text-gray-700 required">
                       Vehicle No:
                     </label>
@@ -292,30 +307,39 @@ const CreateBooking = () => {
 
                     {checked
                       ? !/ශ්‍රී - \d{4}$/.test(bookingData.vehNum) &&
-                        bookingData.vehNum && (
-                          <p className="text-red-500 text-xs mt-1">
-                            Please enter a valid vehicle number (ශ්‍රී - 4444)
-                          </p>
-                        )
+                      bookingData.vehNum && (
+                        <p className="text-red-500 text-xs mt-1">
+                          Please enter a valid vehicle number (ශ්‍රී - 4444)
+                        </p>
+                      )
                       : !/^(?:[A-Z]{3}-\d{4}|[A-Z]{2}-\d{4})$/.test(
-                          bookingData.vehNum
-                        ) &&
-                        bookingData.vehNum && (
-                          <p className="text-red-500 text-xs mt-1">
-                            Please enter a valid vehicle number
-                          </p>
-                        )}
+                        bookingData.vehNum
+                      ) &&
+                      bookingData.vehNum && (
+                        <p className="text-red-500 text-xs mt-1">
+                          Please enter a valid vehicle number
+                        </p>
+                      )}
                   </div>
                   <div className="flex flex-col w-1/6">
                     <label className="block text-gray-700 required">
-                      Milage:
+                      Mileage:
                     </label>
                     <input
                       type="number"
                       name="milage"
                       className="border border-gray-300 rounded-md p-2 bg-gray-100"
                       value={bookingData.milage}
-                      onChange={handleBookingChange}
+                      onChange={(e) => {
+                        // Allow only positive integers
+                        const value = e.target.value;
+                        // Check if the value is a positive integer
+                        if (value === "" || /^[0-9]*$/.test(value)) {
+                          handleBookingChange({ target: { name: "milage", value } });
+                        }
+                      }}
+                      min="0" // Set minimum value to 0
+                      step="1" // Prevent decimal values
                       required
                     />
                     {formErrors.milage && (
@@ -324,6 +348,7 @@ const CreateBooking = () => {
                       </span>
                     )}
                   </div>
+
                 </div>
 
                 <div className="flex flex-col w-full">
@@ -339,7 +364,7 @@ const CreateBooking = () => {
 
               <div className=" bg-slate-200 p-4 rounded-2xl shadow-sm mt-5">
                 <h2 className="text-2xl font-bold mb-5">
-                  Section 2: Time and Date Selection
+                  Time and Date Selection
                 </h2>
                 <div className="flex gap-5">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -361,10 +386,11 @@ const CreateBooking = () => {
                       <DesktopTimePicker
                         value={selectedTime}
                         onChange={(newValue) => setSelectedTime(newValue)}
-                        minutesStep={60}
+                        minutesStep={1}
                         ampm={false}
                         minTime={minTime}
                         maxTime={maxTime}
+                        renderInput={(params) => <TextField {...params} />}
                       />
                     </div>
                   </LocalizationProvider>
