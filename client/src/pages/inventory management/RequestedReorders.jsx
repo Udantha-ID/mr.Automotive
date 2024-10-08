@@ -24,9 +24,9 @@ const RequestedReorders = () => {
       <table className="min-w-full bg-white border border-gray-200 shadow-lg rounded-lg">
         <thead>
           <tr className="bg-gradient-to-r from-teal-500 to-blue-500 text-white">
-            {/* <th className="p-4 text-left font-semibold border-b border-gray-300">
+            {<th className="p-4 text-left font-semibold border-b border-gray-300">
               Part
-            </th> */}
+            </th> }
             <th className="p-4 text-left font-semibold border-b border-gray-300">
               Supplier
             </th>
@@ -42,6 +42,10 @@ const RequestedReorders = () => {
           {reorders.map((reorder) => (
             <tr key={reorder._id} className="border-b border-secondary">
               {/* <td className="p-4 text-dark">{reorder.partName}</td> */}
+
+              <td className="p-4 text-dark">{reorder.partId.partName}</td> {/* Access partName from partId */}
+
+              
               <td className="p-4 text-dark">{reorder.supplier}</td>
               <td className="p-4 text-dark">{reorder.quantity}</td>
               <td className="p-4 text-dark">{reorder.status}</td>
