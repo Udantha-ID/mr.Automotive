@@ -172,14 +172,14 @@ const BookingManagement = () => {
               minDate={startDate} // Disable dates before the selected Start Date
             />
             <button
-            onClick={() => {
-              setStartDate(null); // Clear Start Date
-              setEndDate(null);   // Clear End Date
-            }}
-            className="mt-2 p-2 bg-gray-300 rounded hover:bg-red-500"
-          >
-            Clear Date
-          </button>
+              onClick={() => {
+                setStartDate(null); // Clear Start Date
+                setEndDate(null);   // Clear End Date
+              }}
+              className="mt-2 p-2 bg-gray-300 rounded hover:bg-red-500"
+            >
+              Clear Date
+            </button>
           </div>
           {/* Error message for invalid date range */}
           {startDate && endDate && endDate <= startDate && (
@@ -261,17 +261,17 @@ const BookingManagement = () => {
                 </td>
                 <td className="px-2">
                   <select
-                    className=" bg-PrimaryColor rounded p-1 text-lg w-full"
+                    className="bg-PrimaryColor rounded p-1 text-lg w-full"
                     value={item.status}
-                    onChange={(e) =>
-                      handleStatusChange(item, item._id, e.target.value)
-                    }
+                    onChange={(e) => handleStatusChange(item, item._id, e.target.value)}
+                    disabled={item.status === "Completed"} // Disable if status is "Completed"
                   >
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Completed">Completed</option>
                   </select>
                 </td>
+
                 <td className="py-3 px-2 text-ExtraDarkColor">
                   <button
                     className="bg-pink-600 text-black mt-1 ml-2 inline-block px-8 py-2.5 text-sm uppercase rounded-full shadow-lg transition-transform duration-200 ease-in-out hover:-translate-y-1 hover:shadow-lg active:translate-y-px active:shadow-md mr-5"
