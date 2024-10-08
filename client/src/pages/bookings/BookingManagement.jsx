@@ -261,7 +261,7 @@ const BookingManagement = () => {
                 </td>
                 <td className="px-2">
                   <select
-                    className=" bg-PrimaryColor rounded"
+                    className=" bg-PrimaryColor rounded p-1 text-lg w-full"
                     value={item.status}
                     onChange={(e) =>
                       handleStatusChange(item, item._id, e.target.value)
@@ -269,7 +269,7 @@ const BookingManagement = () => {
                   >
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
-                    <option value="Compleated">Compleated</option>
+                    <option value="Completed">Completed</option>
                   </select>
                 </td>
                 <td className="py-3 px-2 text-ExtraDarkColor">
