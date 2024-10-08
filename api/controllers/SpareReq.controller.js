@@ -37,3 +37,18 @@ export const updateStatus = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+
+//delete a spare
+export const deleteSpareReq = async (req, res) => {
+  try {
+    const sparePart = await SpareReqModel.findByIdAndDelete(req.params.id);
+    if (!sparePart) {
+      return res.status(404).json({ message: "Spare part not found" });
+    }
+
+    res.status(200).json({ message: "Spare part request deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
