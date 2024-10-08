@@ -20,9 +20,9 @@ const AddEmployee = () => {
 
   const sendEmailEmployee = (employee) => {
     const emailConfig = {
-        serviceID: "service_3p901v6",
-        templateID: "template_cwl7ahv",
-        userID: "-r5ctVwHjzozvGIfg",
+        serviceID: "service_z0btt2d",
+        templateID: "template_22k635l",
+        userID: "j5XhaYmWWVErqfqKN",
     };
     
     emailjs
