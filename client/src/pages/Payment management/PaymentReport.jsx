@@ -148,14 +148,14 @@ const PaymentReport = () => {
 
   const generateCSV = () => {
     const csvData = [
-      ["Payment ID", "Customer Name", "Vehicle Number", "Payment Date", "Payment Method", "Booking ID", "Package", "Amount"],
+      ["Payment ID", "Customer Name", "Vehicle Number", "Payment Date", "Payment Method","Package", "Amount"],
       ...paymentData.map((payment) => [
         payment.PaymentId,
         payment.cusName,
         payment.Vehicle_Number,
         payment.PaymentDate,
         payment.PaymentMethod,
-        payment.Booking_Id,
+        // payment.Booking_Id,
         payment.Package || "N/A",
         (payment.Pamount || 0).toFixed(2),
       ]),
@@ -182,7 +182,7 @@ const PaymentReport = () => {
   }
 
   return (
-    <div className="p-6 bg-primary rounded-lg shadow-lg">
+    <div className="p-6 bg-PColor rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-dark mb-4">Payment Report</h2>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -245,7 +245,7 @@ const PaymentReport = () => {
                 <th className="py-2 px-4">Vehicle Number</th>
                 <th className="py-2 px-4">Payment Date</th>
                 <th className="py-2 px-4">Payment Method</th>
-                <th className="py-2 px-4">Booking ID</th>
+                {/* <th className="py-2 px-4">Booking ID</th> */}
                 <th className="py-2 px-4">Package</th>
                 <th className="py-2 px-4">Package Amount</th>
               </tr>
@@ -259,7 +259,7 @@ const PaymentReport = () => {
                     <td className="py-2 px-4">{payment.Vehicle_Number}</td>
                     <td className="py-2 px-4">{payment.PaymentDate}</td>
                     <td className="py-2 px-4">{payment.PaymentMethod}</td>
-                    <td className="py-2 px-4">{payment.Booking_Id}</td>
+                    {/* <td className="py-2 px-4">{payment.Booking_Id}</td> */}
                     <td className="py-2 px-4">{payment.Package || "N/A"}</td>
                     <td className="py-3 px-5">Rs.{Number(payment.Pamount).toFixed(2)}</td>
                   </tr>

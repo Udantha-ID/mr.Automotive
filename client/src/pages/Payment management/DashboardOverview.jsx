@@ -146,7 +146,7 @@ const ShowPayment = () => {
                   {payments.map((payment) => (
                     <tr
                       key={payment.PaymentId}
-                      className="border-b hover:bg-PrimaryColor transition-colors duration-300"
+                      className="border-b hover:bg-PColor transition-colors duration-300"
                     >
                       <td className="py-3 px-5 text-ExtraDarkColor">
                         {payment.PaymentId}
@@ -203,7 +203,7 @@ const ShowPayment = () => {
                     {EmployeeSalary.map((sal) => (
                       <tr
                         key={sal._id}
-                        className="border-b hover:bg-PrimaryColor transition-colors duration-300"
+                        className="border-b hover:bg-PColor transition-colors duration-300"
                       >
                         <td className="py-3 px-5 text-ExtraDarkColor">
                           {sal.employeeName}
