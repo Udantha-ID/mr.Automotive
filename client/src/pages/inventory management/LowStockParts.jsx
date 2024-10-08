@@ -49,7 +49,7 @@ const LowStockParts = () => {
         emailConfig.serviceID,
         emailConfig.templateID,
         {
-          to_email: "konarashan@gmail.com", // Supplier email
+          to_email: "viraj.n1231@gmail.com", // Supplier email
           to_name: "Supplier Manager", // Supplier's name
           part_name: selectedPart.partName, // Part name
           supplier_name: selectedPart.supplier, // Supplier name
