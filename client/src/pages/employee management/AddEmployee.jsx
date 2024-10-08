@@ -228,7 +228,12 @@ const AddEmployee = () => {
       <label className='form-label'>NIC Number</label>
       <input type="text" 
         value={NIC} 
-        onChange={(e) => setNIC(e.target.value)}
+        onChange={(e) => {
+          const reges = /^[0-9xvXVI]*$/;
+          if (e.target.value.match(reges)) {
+            setNIC(e.target.value);
+        }}
+      }
         maxLength={12}
         className='form-input' />
     </div>
