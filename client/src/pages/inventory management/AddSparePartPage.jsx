@@ -187,7 +187,12 @@ const AddSparePartPage = () => {
                 type="number"
                 className="w-full p-2 border border-dark rounded"
                 value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={(e) => {
+                  const regex = /^\d+(\.\d{0,2})?$/; // Only numbers with up to two decimal places
+                  if (regex.test(e.target.value) || e.target.value === "") {
+                    setPrice(e.target.value);
+                  }
+                }}
                 required
               />
             </div>
