@@ -92,7 +92,7 @@ const UpdateReqItemPopup = ({ isOpen, onClose, requestItemData }) => {
           <h2 className="text-dark text-2xl font-bold mb-6">Update Request Item</h2>
           <Scrollbars style={{ height: "70vh" }}>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="text-dark block mb-2">Request ID</label>
                 <input
                   type="text"
@@ -101,7 +101,7 @@ const UpdateReqItemPopup = ({ isOpen, onClose, requestItemData }) => {
                   onChange={(e) => setRequestID(e.target.value)}
                   required
                 />
-              </div>
+              </div> */}
               <div className="mb-4">
                 <label className="text-dark block mb-2">Supplier Name</label>
                 <select
