@@ -14,28 +14,28 @@ const Fact = () => {
           <div className="col-md-6 col-lg-3 text-center">
             <FaCheck className="icon text-white mb-3" />
             <h2 className="text-white mb-2">
-              {inView ? <CountUp end={1234} duration={2} /> : "0"}
+              {inView ? <CountUp end={15} duration={2} /> : "0"}
             </h2>
             <p className="text-white mb-0">Years Experience</p>
           </div>
           <div className="col-md-6 col-lg-3 text-center">
             <FaUsersCog className="icon text-white mb-3" />
             <h2 className="text-white mb-2">
-              {inView ? <CountUp end={1234} duration={2} /> : "0"}
+              {inView ? <CountUp end={7} duration={2} /> : "0"}
             </h2>
             <p className="text-white mb-0">Expert Technicians</p>
           </div>
           <div className="col-md-6 col-lg-3 text-center">
             <FaUsers className="icon text-white mb-3" />
             <h2 className="text-white mb-2">
-              {inView ? <CountUp end={1234} duration={2} /> : "0"}
+              {inView ? <CountUp end={1000} duration={2} /> : "0"}
             </h2>
             <p className="text-white mb-0">Satisfied Clients</p>
           </div>
           <div className="col-md-6 col-lg-3 text-center">
             <FaCar className="icon text-white mb-3" />
             <h2 className="text-white mb-2">
-              {inView ? <CountUp end={1234} duration={2} /> : "0"}
+              {inView ? <CountUp end={1000} duration={2} /> : "0"}
             </h2>
             <p className="text-white mb-0">Completed Projects</p>
           </div>
