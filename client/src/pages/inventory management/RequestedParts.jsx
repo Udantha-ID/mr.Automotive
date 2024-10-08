@@ -31,23 +31,26 @@ const RequestedParts = () => {
     rejected: 0,
   });
 
+  // Fetch spare parts from the backend API
   useEffect(() => {
     const fetchSpareParts = async () => {
       try {
         const response = await axios.get("http://localhost:3000/api/spreq/get");
+        console.log("Fetched spare parts:", response.data); // Debugging: Check the fetched data
         setSpareParts(response.data);
-        updateStats(response.data);
+        updateStats(response.data); // Update statistics based on the fetched data
       } catch (error) {
         console.error("Error fetching spare parts", error);
         Swal.fire("Error", "Error fetching spare parts", "error");
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop the loading spinner once data is fetched
       }
     };
 
     fetchSpareParts();
   }, []);
 
+  // Update statistics based on spare parts data
   const updateStats = (data) => {
     const newStats = data.reduce(
       (acc, part) => {
@@ -57,38 +60,47 @@ const RequestedParts = () => {
       },
       { total: 0, approved: 0, pending: 0, rejected: 0 }
     );
+    console.log("Updated stats:", newStats); // Debugging: Check the updated stats
     setStats(newStats);
   };
 
+  // Handle status change of spare parts
   const handleStatusChange = async (id, newStatus) => {
     setUpdatingStatus(id);
     try {
       await axios.put(`http://localhost:3000/api/spreq/${id}/status`, {
         status: newStatus,
       });
+
+      // Update spare parts locally after status change
       setSpareParts((prevParts) =>
         prevParts.map((part) =>
           part._id === id ? { ...part, status: newStatus } : part
         )
       );
+
+      // Update the stats after the status change
       updateStats(
         spareParts.map((part) =>
           part._id === id ? { ...part, status: newStatus } : part
         )
       );
+
       Swal.fire("Success", "Status updated successfully", "success");
     } catch (error) {
       console.error("Error updating status", error);
       Swal.fire("Error", "Failed to update status", "error");
     } finally {
-      setUpdatingStatus(null);
+      setUpdatingStatus(null); // Clear the updating status state
     }
   };
 
+  // If data is still loading, show a spinner
   if (loading) {
     return <LoadingSpinner />;
   }
 
+  // Get row style based on part status
   const getStatusRowStyle = (status) => {
     switch (status) {
       case "Approved":
@@ -103,6 +115,8 @@ const RequestedParts = () => {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-3xl font-bold mb-6">Requested Spare Parts</h1>
+
+      {/* Status Cards to display stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <StatusCard
           title="Total Requests"
@@ -129,13 +143,14 @@ const RequestedParts = () => {
           color="bg-red-100"
         />
       </div>
+
+      {/* Spare Parts Table */}
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full table-auto">
             <thead className="bg-gray-200">
               <tr>
                 <th className="px-4 py-2 text-left">Item Name</th>
-
                 <th className="px-4 py-2 text-left">Requested Items</th>
                 <th className="px-4 py-2 text-left">Status</th>
               </tr>
@@ -155,7 +170,6 @@ const RequestedParts = () => {
                     <td className="px-4 py-2">
                       {part.item.map((i) => i.name).join(", ")}
                     </td>
-
                     <td className="px-4 py-2">
                       <ul className="list-disc pl-5">
                         {part.item.map((i, index) => (
@@ -188,7 +202,7 @@ const RequestedParts = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="px-4 py-2 text-center">
+                  <td colSpan="3" className="px-4 py-2 text-center">
                     No spare parts available
                   </td>
                 </tr>

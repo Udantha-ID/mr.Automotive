@@ -79,7 +79,7 @@ export default function App() {
         <Route path="/employee/salary/delete/:id" element={<DeleteSalary />} />
 
 
-        <Route path="/pkg" element={<ShowAllPackages />} />
+        {/* <Route path="/pkg" element={<ShowAllPackages />} /> */}
 
         <Route path="/Service" element={<CustomModification />} />
 
