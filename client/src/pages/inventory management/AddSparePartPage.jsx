@@ -202,7 +202,12 @@ const AddSparePartPage = () => {
                 type="number"
                 className="w-full p-2 border border-dark rounded"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === "" || /^\d+$/.test(value)) {
+                    setQuantity(value);
+                  }
+                }}
                 required
               />
             </div>
