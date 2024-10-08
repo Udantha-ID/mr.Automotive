@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const requestItemSchema = new mongoose.Schema(
   {
-    // requestID: {
-    //   type: String,
-    //   required: true,
-    //   unique: true,
-    // },
+    requestID: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     supplierName: {
       type: String,
       required: true,

@@ -203,8 +203,11 @@ const ShowPayment = () => {
                     {EmployeeSalary.map((sal) => (
                       <tr
                         key={sal._id}
-                        className="border-b hover:bg-PColor transition-colors duration-300"
+                        className={`border-b hover:bg-PColor transition-colors duration-300 ${
+                          sal.status === "approved" ? "bg-green" : sal.status === "declined" ? "bg-red" : ""
+                        }`}
                       >
+                        
                         <td className="py-3 px-5 text-ExtraDarkColor">
                           {sal.employeeName}
                         </td>

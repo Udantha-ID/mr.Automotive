@@ -180,7 +180,7 @@ const AddRequestItemPage = () => {
           Add Request Item
         </h2>
         <form onSubmit={handleSubmit}>
-          {/* <div className="mb-4">
+          <div className="mb-4">
             <label className="text-dark block mb-2">Request ID</label>
             <input
               type="text"
@@ -189,7 +189,7 @@ const AddRequestItemPage = () => {
               onChange={(e) => setRequestID(e.target.value)}
               required
             />
-          </div> */}
+          </div>
           <div className="mb-4">
             <label className="text-dark block mb-2">Supplier Name</label>
             <select
