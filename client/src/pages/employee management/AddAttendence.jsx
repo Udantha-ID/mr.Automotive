@@ -16,7 +16,7 @@ const AddAttendence = () => {
     const [OutTime, setOutTime] = useState('');
     const [WorkingHours, setWorkingHours] = useState('');
     const [OTHour, setOTHour] = useState('');
-
+    const [today, setToday] = useState("");
     
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -44,6 +44,10 @@ const AddAttendence = () => {
             });
     }, []);
     
+    useEffect(() => {
+        const currentDate = new Date().toISOString().split("T")[0]; // Get today's date in 'YYYY-MM-DD' format
+        setToday(currentDate);
+    }, []);
 
     //Handle to update selected employee based on NIC change
     const handleNIC = (e) =>{
@@ -228,7 +232,8 @@ const handleAddEmployeeAttendence = () => {
         <input
             type="date"
             id="date"
-            max={Today}
+            min={today}   
+            max={today}  
             className="form-control"
             value={date}
             onChange={(e) => setdate(e.target.value)}
