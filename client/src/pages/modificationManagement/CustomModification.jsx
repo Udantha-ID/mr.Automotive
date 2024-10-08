@@ -362,7 +362,7 @@ const CustomModification = () => {
             <form onSubmit={formik.handleSubmit} className="space-y-4">
               {/* Row 1 */}
               <div className="flex flex-wrap -mx-2 mb-4">
-                <div className="w-full sm:w-1/3 px-2 mb-4 sm:mb-0">
+                {/* <div className="w-full sm:w-1/3 px-2 mb-4 sm:mb-0">
                   <label className="text-gray-700">Customer ID</label>
                   <input
                     type="text"
@@ -373,7 +373,7 @@ const CustomModification = () => {
                     required
                     readOnly
                   />
-                </div>
+                </div> */}
                 <div className="w-full sm:w-1/3 px-2 mb-4 sm:mb-0">
                   <label className="text-gray-700">Customer Name</label>
                   <input
@@ -382,6 +382,11 @@ const CustomModification = () => {
                     value={formik.values.customerName}
                     onChange={formik.handleChange}
                     className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                    onKeyDown={(e) => {
+                      if (!/[a-zA-Z\s]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+                        e.preventDefault();
+                      }
+                    }}
                   />
                   {formik.errors.customerName && (
                     <div className="text-red-500 text-sm">
@@ -389,6 +394,8 @@ const CustomModification = () => {
                     </div>
                   )}
                 </div>
+
+
                 <div className="w-full sm:w-1/3 px-2">
                   <label className="text-gray-700">Customer Email</label>
                   <input
@@ -416,6 +423,12 @@ const CustomModification = () => {
                     value={formik.values.vehicleModel}
                     onChange={formik.handleChange}
                     className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                    pattern="[A-Za-z0-9]*" // Allows only letters and numbers
+                    onKeyDown={(e) => {
+                      if (!/[a-zA-Z0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'Tab') {
+                        e.preventDefault(); // Prevents non-letter and non-number characters
+                      }
+                    }}
                     required
                   />
                   {formik.errors.vehicleModel && (
@@ -424,6 +437,7 @@ const CustomModification = () => {
                     </div>
                   )}
                 </div>
+
                 <div className="w-full sm:w-1/2 px-2">
                   <Switch
                     checked={checked}
@@ -436,7 +450,13 @@ const CustomModification = () => {
                     type="text"
                     name="vehicleNumber"
                     value={formik.values.vehicleNumber}
-                    onChange={formik.handleChange}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      // Allow only letters, numbers, spaces, and dashes
+                      if (/^[A-Za-z0-9 -]*$/.test(value)) {
+                        formik.setFieldValue('vehicleNumber', value);
+                      }
+                    }}
                     className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
                     required
                   />
@@ -446,21 +466,20 @@ const CustomModification = () => {
                     </div>
                   )}
                   {checked
-                    ? !/ශ්‍රී - \d{4}$/.test(formik.values.vehicleNumber) &&
-                      formik.values.vehicleNumber && (
-                        <p className="text-red-500 text-xs mt-1">
-                          Please enter a valid vehicle number (ශ්‍රී - 4444)
-                        </p>
-                      )
-                    : !/^(?:[A-Z]{3}-\d{4}|[A-Z]{2}-\d{4})$/.test(
-                        formik.values.vehicleNumber
-                      ) &&
-                      formik.values.vehicleNumber && (
-                        <p className="text-red-500 text-xs mt-1">
-                          Please enter a valid vehicle number
-                        </p>
-                      )}
+                    ? !/^(?:ශ්‍රී - \d{4})$/.test(formik.values.vehicleNumber) &&
+                    formik.values.vehicleNumber && (
+                      <p className="text-red-500 text-xs mt-1">
+                        Please enter a valid vehicle number (ශ්‍රී - 4444)
+                      </p>
+                    )
+                    : !/^(?:[A-Z]{3}-\d{4}|[A-Z]{2}-\d{4})$/.test(formik.values.vehicleNumber) &&
+                    formik.values.vehicleNumber && (
+                      <p className="text-red-500 text-xs mt-1">
+                        Please enter a valid vehicle number (e.g., ABC-1234 or AB-1234)
+                      </p>
+                    )}
                 </div>
+
               </div>
               {/* Row 3 */}
               <div className="flex flex-wrap -mx-2 mb-4">

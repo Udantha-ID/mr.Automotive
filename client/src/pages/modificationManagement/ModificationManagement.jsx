@@ -238,15 +238,30 @@ const ModificationManagement = () => {
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               renderInput={(params) => <TextField {...params} />}
+              minDate={startDate} // Disable dates before the selected Start Date
             />
-            {startDate >= endDate && (
-              <p className="text-red-500 text-xs mt-1">
-                End date should greater than Start Date
-              </p>
-            )}
           </div>
+          {/* Error message for invalid date range */}
+          {startDate && endDate && endDate <= startDate && (
+            <p className="text-red-500 text-xs mt-1">
+              End date should be greater than Start Date
+            </p>
+          )}
+          <button
+            onClick={() => {
+              setStartDate(null); 
+              setEndDate(null);   
+            }}
+            className="mt-2 p-2 bg-gray-300 rounded hover:bg-gray-400"
+          >
+            Clear Dates
+          </button>
         </LocalizationProvider>
       </div>
+
+
+
+
 
       {/* Modification Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
