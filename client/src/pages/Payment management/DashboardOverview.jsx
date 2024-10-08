@@ -129,7 +129,7 @@ const ShowPayment = () => {
             </h2>
             <div className="max-h-96 overflow-y-auto">
               <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                <thead className="bg-DarkColor text-white">
+                <thead className="bg-gray-800 text-white">
                   <tr>
                     <th className="py-3 px-5 text-left">Payment ID</th>
                     <th className="py-3 px-5 text-left">Customer Name</th>
@@ -186,17 +186,17 @@ const ShowPayment = () => {
               </h2>
               <div className="max-h-96 overflow-y-auto">
                 <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                  <thead className="bg-DarkColor text-white center">
+                  <thead className="bg-gray-800 text-white">
                     <tr>
-                      <th>Employee Name</th>
-                      <th>NIC Number</th>
-                      <th>From Date</th>
-                      <th>To Date</th>
-                      <th>Total OT Hours</th>
-                      <th>Total OT Pay</th>
-                      <th>Basic Salary</th>
-                      <th>Total Salary</th>
-                      <th>Action</th>
+                      <th className="py-3 px-5 text-left">Employee Name</th>
+                      <th className="py-3 px-5 text-left">NIC Number</th>
+                      <th className="py-3 px-5 text-left">From Date</th>
+                      <th className="py-3 px-5 text-left">To Date</th>
+                      <th className="py-3 px-5 text-left">Total OT Hours</th>
+                      <th className="py-3 px-5 text-left">Total OT Pay</th>
+                      <th className="py-3 px-5 text-left">Basic Salary</th>
+                      <th className="py-3 px-5 text-left">Total Salary</th>
+                      <th className="py-3 px-5 text-left">Action</th>
                     </tr>
                   </thead>
                   <tbody>

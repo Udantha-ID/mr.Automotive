@@ -240,7 +240,9 @@ const handleStartDateChange = (e) => {
                     </thead>
                     <tbody>
                         {filteredSalaries.map((sal) => (
-                            <tr key={sal._id} className="border-b">
+                            <tr key={sal._id} className="border-b hover:bg-gray-100 transition-colors duration-300"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }} >
                                 <td className="py-3 px-5">
                                     {editEmployee && editEmployee._id === sal._id ? (
                                         <input
