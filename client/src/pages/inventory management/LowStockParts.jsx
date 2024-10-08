@@ -39,9 +39,9 @@ const LowStockParts = () => {
 
   const sendEmailToSupplier = () => {
     const emailConfig = {
-      serviceID: "service_3p901v6",
-      templateID: "template_cwl7ahv",
-      userID: "-r5ctVwHjzozvGIfg",
+      serviceID: "service_1rm3itk",
+      templateID: "template_095y1qw",
+      userID: "8ZrJ13zvdBwdRmAST",
     };
   
     emailjs
