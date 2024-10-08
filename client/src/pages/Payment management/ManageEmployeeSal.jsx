@@ -129,7 +129,7 @@ const ManageEmployeeSal = () => {
         doc.text('Vehicle_Service Management', 105, 15, { align: 'center' });
       
         doc.setFont('helvetica', 'normal').setFontSize(18).setTextColor('#333');
-        doc.text('Request Item Details Report', 105, 25, { align: 'center' });
+        doc.text('Employee Salary Details Report', 105, 25, { align: 'center' });
       
         doc.setFont('helvetica', 'italic').setFontSize(12).setTextColor('#666');
         doc.text(`Report Generated Date: ${date}`, 105, 35, { align: 'center' });
