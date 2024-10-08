@@ -69,7 +69,7 @@ const GenerateReports = () => {
     }
 
     doc.setFontSize(18);
-    doc.text(selectedReport === "salary" ? "Employee Salary Report" : "Employee Attendance Report", 75, 50);
+    doc.text(selectedReport === "salary" ? "Employee Salary Report" : "Employee Attendance Report", 7, 50);
 
     const data = selectedReport === "salary" ? salaryReportData : attendanceReportData;
 
@@ -77,14 +77,14 @@ const GenerateReports = () => {
     doc.text(`Total Employees: ${data.length}`, 10, 70);
 
     const head = selectedReport === "salary"
-      ? [["Employee Name", "NIC", "From Date", "To Date", "OT Hours","EPF Amount", "OT Amount", "Basic Salary", "Total Salary"]]
+      ? [["Employee Name", "NIC", "Date", "OT Hours","EPF Amount", "ETF", "OT Amount", "Basic Salary", "Total Salary"]]
       : [["Employee Name", "NIC", "Date", "Check-In", "Check-Out","Workin Hours", "Total Hours"]];
 
     const body = data.map((item) => selectedReport === "salary"
-      ? [item.employeeName, item.NIC, item.formDate, item.toDate, item.totalOtHours,`Rs:${item.epfAmount.toFixed(2)}`, `Rs:${item.totalOtAmount.toFixed(2)}`, `Rs:${item.basicSalary.toFixed(2)}`, `Rs:${item.totalSalary.toFixed(2)}`]
+      ? [item.employeeName, item.NIC,  item.toDate, item.totalOtHours,`Rs:${item.epfAmount}`,`Rs:${item.etfAmount}`, `Rs:${item.totalOtAmount.toFixed(2)}`, `Rs:${item.basicSalary.toFixed(2)}`, `Rs:${item.totalSalary.toFixed(2)}`]
       : [item.employeeName, item.NIC, item.date, item.InTime, item.OutTime, item.WorkingHours,item.OTHour]);
 
-    doc.autoTable({ head, body, startY: 100 });
+    doc.autoTable({ head, body, startY: 90 });
 
     doc.text("Employee Manager Signature: ____________________", 10, doc.internal.pageSize.height - 20);
 

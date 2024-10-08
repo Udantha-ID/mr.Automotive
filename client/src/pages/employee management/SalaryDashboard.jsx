@@ -131,8 +131,8 @@ function SalaryDashboard() {
                 <td>{salary.formDate}</td>
                 <td>{salary.toDate}</td>
                 <td>{salary.totalOtHours} Hours</td>
-                <td>Rs: {salary.totalOtAmount}</td>
-                <td>Rs: {salary.basicSalary}</td>
+                <td>Rs: {Number(salary.totalOtAmount).toFixed(2)}</td>
+                <td>Rs: {Number(salary.basicSalary).toFixed(2)}</td>
                 <td>Rs: {Number(salary.totalSalary).toFixed(2)}</td>
                 <td>
                   <div className='action-icons'>

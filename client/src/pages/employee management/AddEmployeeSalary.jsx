@@ -16,6 +16,7 @@ const AddEmployeeSalary = () => {
     const [totalOThours, settotalOThours] = useState('');
     const [totalOTpay, settotalOTpay] = useState('');
     const [epfAmount, setEpfAmount] = useState('');
+    // const [etfAmount, setEtfAmount] = useState('');
     const [BasicSalary, setBasicSalary] = useState('');
     const [totalSalary, setTotalSalary] = useState('');
     const [employees, setEmployees] = useState([]);
@@ -138,16 +139,18 @@ const AddEmployeeSalary = () => {
             }, 0);
             settotalOThours(totalOTHours);
             calculateTotalOTpay();
+    
         });
     
         // If EPF is included, calculate EPF amount
         if (includeEPF) {
-            epfAmount = totalSalary * 0.08;
+ 
+            epfAmount = BasicSalary * 0.08;
             totalSalary -= epfAmount;
         }
-    
-        setTotalSalary(totalSalary);  // Update total salary
-        setEpfAmount(epfAmount);  // Update EPF amount for the report
+
+        setTotalSalary(totalSalary);  
+        setEpfAmount(epfAmount);  
     };
     
 
@@ -186,6 +189,8 @@ const AddEmployeeSalary = () => {
             basicSalary: BasicSalary,
             totalSalary,
         };
+
+        console.log("DataPass", data);
 
         setLoading(true);
         axios
@@ -294,7 +299,7 @@ const AddEmployeeSalary = () => {
             </div>
 
             <div className="form-group">
-                <label htmlFor="EPF" className="form-label">Include EPF</label>
+                <label htmlFor="EPF" className="form-label">Include EPF and ETF</label>
                 <button onClick={() => setIncludeEPF(!includeEPF)}>
                     {includeEPF ? 'Yes' : 'No'}
                 </button>
