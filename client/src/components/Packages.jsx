@@ -16,10 +16,12 @@ const Packages = () => {
       } catch (error) {
         console.error("Error fetching repair estimates:", error);
       }
+
     };
     fetchMaintaincePkgs();
   }, []);
-
+  
+  
   const calculateRemainingDays = (pkgExp) => {
     const today = new Date();
     const expiryDate = new Date(pkgExp); // assuming pkgExp is in a valid date format
@@ -49,7 +51,7 @@ const Packages = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ml-20 mr-20">
         {maintancePkgs
-          .filter((pkg) => pkg.status === true)
+          // .filter((pkg) => pkg.status === true)
           .map((pkg, index) => (
             <div
               key={index}
@@ -57,7 +59,7 @@ const Packages = () => {
               onClick={handleClickCard}
             >
               <h4 className="bg-blue-500 text-white font-bold py-2 px-4 w-36 absolute">
-                {calculateRemainingDays(pkg.pkgExp)} days left
+                {calculateRemainingDays(pkg.pkgExp)} days left 
               </h4>
               <img
                 src={pkg.imageURL}
