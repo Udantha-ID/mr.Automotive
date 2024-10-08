@@ -158,24 +158,37 @@ const BookingManagement = () => {
         </h2>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <div className="flex space-x-4">
+            <label>Start Date:</label>
             <DatePicker
-              label="Start Date"
               value={startDate}
               onChange={(newValue) => setStartDate(newValue)}
               renderInput={(params) => <TextField {...params} />}
             />
+            <label>End Date:</label>
             <DatePicker
-              label="End Date"
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               renderInput={(params) => <TextField {...params} />}
+              minDate={startDate} // Disable dates before the selected Start Date
             />
-            {startDate >= endDate && (
-              <p className="text-red-500 text-xs mt-1">
-                End date should greater than Start Date
-              </p>
-            )}
+            <button
+            onClick={() => {
+              setStartDate(null); // Clear Start Date
+              setEndDate(null);   // Clear End Date
+            }}
+            className="mt-2 p-2 bg-gray-300 rounded hover:bg-blue-400"
+          >
+            Clear Date
+          </button>
           </div>
+          {/* Error message for invalid date range */}
+          {startDate && endDate && endDate <= startDate && (
+            <p className="text-red-500 text-xs mt-1">
+              End date should be greater than Start Date
+            </p>
+          )}
+           
+
         </LocalizationProvider>
       </div>
 
