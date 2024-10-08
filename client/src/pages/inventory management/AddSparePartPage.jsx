@@ -261,47 +261,46 @@ const AddSparePartPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="text-dark block mb-2">Features</label>
-            {features.map((feature) => (
-              <div key={feature.id} className="mb-2 flex items-center">
-                <input
-                  type="text"
-                  className="w-1/2 p-2 border border-dark rounded"
-                  placeholder="Feature Key"
-                  value={feature.key}
-                  onChange={(e) => {
-                    const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
-                    if (regex.test(e.target.value)) {
-                      handleFeatureChange(feature.id, "key", e.target.value);
-                    }
-                  }}
-                />
-                <input
-                  type="text"
-                  className="w-1/2 p-2 border border-dark rounded ml-2"
-                  placeholder="Feature Value"
-                  value={feature.value}
-                  onChange={(e) =>
-                    handleFeatureChange(feature.id, "value", e.target.value)
-                  }
-                />
-                <button
-                  type="button"
-                  className="ml-2 p-2 text-red-500"
-                  onClick={() => handleRemoveFeature(feature.id)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              className="text-blue-500"
-              onClick={handleAddFeature}
-            >
-              + Add Feature
-            </button>
-          </div>
+  <label className="text-dark block mb-2">Features</label>
+  {features.map((feature) => (
+    <div key={feature.id} className="mb-2 flex items-center">
+      <input
+        type="text"
+        className="w-1/2 p-2 border border-dark rounded"
+        placeholder="Feature Key"
+        value={feature.key}
+        onChange={(e) => {
+          const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+          if (regex.test(e.target.value)) {
+            handleFeatureChange(feature.id, "key", e.target.value);
+          }
+        }}
+      />
+      <input
+        type="text"
+        className="w-1/2 p-2 border border-dark rounded ml-2"
+        placeholder="Feature Value"
+        value={feature.value}
+        onChange={(e) => handleFeatureChange(feature.id, "value", e.target.value)}
+      />
+      <button
+        type="button"
+        className="ml-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition duration-200"
+        onClick={() => handleRemoveFeature(feature.id)}
+      >
+        Remove
+      </button>
+    </div>
+  ))}
+  <button
+    type="button"
+    className="mt-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition duration-200"
+    onClick={handleAddFeature}
+  >
+    + Add Feature
+  </button>
+</div>
+
           <div className="mb-4">
             <label className="text-dark block mb-2">
               Image (JPG/PNG max 2MB)
