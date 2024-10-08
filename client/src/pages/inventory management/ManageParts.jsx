@@ -226,6 +226,10 @@ const ManageParts = () => {
                 <th className="p-4 text-left font-semibold">Part</th>
                 <th className="p-4 text-left font-semibold">Type</th>
                 <th className="p-4 text-left font-semibold">Price</th>
+
+                <th className="p-4 text-left font-semibold">Unit</th>
+                <th className="p-4 text-left font-semibold">Category</th>
+
                 <th className="p-4 text-left font-semibold">Quantity</th>
                 <th className="p-4 text-left font-semibold">Actions</th>
               </tr>
@@ -254,7 +258,11 @@ const ManageParts = () => {
                     </div>
                   </td>
                   <td className="p-4 text-gray-600 capitalize">{part.type}</td>
-                  <td className="p-4 text-gray-600">Rs {part.price}</td>
+                  <td className="p-4 text-gray-600">Rs {Number(part.price).toFixed(2)}</td>
+
+                  <td className="p-4 text-gray-600">{part.units}</td>
+                  <td className="p-4 text-gray-600">{part.category}</td>
+
                   <td className="p-4 text-gray-600">
                     {part.quantity}
                     {part.quantity < 20 && (
