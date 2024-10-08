@@ -122,7 +122,7 @@ const AddSupplierPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="text-dark block mb-2">Supplier Name</label>
+            <label className="text-dark block mb-2">Company Name</label>
             <input
               type="text"
               className="w-full p-2 border border-dark rounded"
