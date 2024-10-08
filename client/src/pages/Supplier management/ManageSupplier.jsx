@@ -48,9 +48,8 @@ const ManageSupplier = () => {
   // Filter suppliers based on the search term
   const filteredSuppliers = suppliers.filter((supplier) =>
     supplier.SupplierName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    supplier.Companyname.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    supplier.ItemName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    supplier.ContactNo.includes(searchTerm)
+    // supplier.Companyname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    supplier.ItemName.toLowerCase().includes(searchTerm.toLowerCase()) 
   );
 
   const handleGenerateReport = () => {
