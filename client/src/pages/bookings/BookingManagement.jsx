@@ -176,7 +176,7 @@ const BookingManagement = () => {
               setStartDate(null); // Clear Start Date
               setEndDate(null);   // Clear End Date
             }}
-            className="mt-2 p-2 bg-gray-300 rounded hover:bg-blue-400"
+            className="mt-2 p-2 bg-gray-300 rounded hover:bg-red-500"
           >
             Clear Date
           </button>
@@ -187,8 +187,6 @@ const BookingManagement = () => {
               End date should be greater than Start Date
             </p>
           )}
-           
-
         </LocalizationProvider>
       </div>
 
@@ -263,7 +261,7 @@ const BookingManagement = () => {
                 </td>
                 <td className="px-2">
                   <select
-                    className=" bg-PrimaryColor rounded"
+                    className=" bg-PrimaryColor rounded p-1 text-lg w-full"
                     value={item.status}
                     onChange={(e) =>
                       handleStatusChange(item, item._id, e.target.value)
@@ -271,7 +269,7 @@ const BookingManagement = () => {
                   >
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
-                    <option value="Compleated">Compleated</option>
+                    <option value="Completed">Completed</option>
                   </select>
                 </td>
                 <td className="py-3 px-2 text-ExtraDarkColor">
