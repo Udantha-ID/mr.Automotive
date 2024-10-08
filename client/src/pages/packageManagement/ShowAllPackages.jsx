@@ -129,7 +129,6 @@ const ShowAllPackages = () => {
       console.log(error);
     }
   };
-  
 
   return (
     <div className="p-8">
@@ -216,7 +215,6 @@ const ShowAllPackages = () => {
               <th className="py-3 px-5 text-left">Services</th>
               <th className="py-3 px-5 text-left">Action</th>
               <th className="py-3 px-5 text-left">Request</th>
-
             </tr>
           </thead>
           <tbody>
@@ -305,7 +303,15 @@ const ShowAllPackages = () => {
                       placeholder="Quantity"
                       name="quantity"
                       value={item.quantity}
-                      onChange={handleOnChange}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        // Check if the value is a positive integer
+                        if (/^\d+$/.test(value) || value === "") {
+                          handleOnChange(e); // Only allow positive integers
+                        }
+                      }}
+                      min="0" // Prevent negative numbers
+                      step="1" // Prevent decimals
                       required
                     />
                   </div>
@@ -355,7 +361,6 @@ const ShowAllPackages = () => {
         </Modal>
       </div>
     </div>
-    
   );
 };
 
