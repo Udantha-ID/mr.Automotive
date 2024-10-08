@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import Swal from "sweetalert2";
+import emailjs from "emailjs-com";
 
 const LowStockParts = () => {
   const [lowStockParts, setLowStockParts] = useState([]);
@@ -29,7 +30,83 @@ const LowStockParts = () => {
     setShowReorderPopup(true);
   };
 
+
+
+
+
+
+
+
+  const sendEmailToSupplier = () => {
+    const emailConfig = {
+      serviceID: "service_3p901v6",
+      templateID: "template_cwl7ahv",
+      userID: "-r5ctVwHjzozvGIfg",
+    };
+  
+    emailjs
+      .send(
+        emailConfig.serviceID,
+        emailConfig.templateID,
+        {
+          to_email: "viraj.n1231@gmail.com", // Supplier email
+          to_name: "Supplier Manager", // Supplier's name
+          part_name: selectedPart.partName, // Part name
+          supplier_name: selectedPart.supplier, // Supplier name
+          quantity: quantity, // Quantity to reorder
+          message: `
+            Dear Supplier Manager,
+  
+            I want to reorder the following items to fulfill the low stock. Please check your order:
+  
+            - Part Name: ${selectedPart.partName}
+            - Supplier: ${selectedPart.supplier}
+            - Quantity: ${quantity}
+  
+            Thank you for your assistance!
+  
+            Best regards,
+            [Your Name]
+            [Your Position] (Optional)
+          `,
+        },
+        emailConfig.userID
+      )
+      .then(() => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Email sent successfully!",
+          showConfirmButton: true,
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Error sending email!",
+          showConfirmButton: true,
+          timer: 2000,
+        });
+      });
+  };
+  
+
+
+
+
+
+
+
+
+
+
+
+
   const placeReorder = async () => {
+    
     try {
       const response = await axios.post(
         "http://localhost:3000/api/reorder/reorder",
@@ -40,6 +117,25 @@ const LowStockParts = () => {
         }
       );
       Swal.fire("Success", response.data.message, "success");
+
+
+
+      Swal.fire({
+        title: "Send Email?",
+        text: "Do you want to send a confirmation email to the supplier?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Yes, send it",
+        cancelButtonText: "No, skip",
+      }).then((emailResult) => {
+        if (emailResult.isConfirmed) {
+          sendEmailToSupplier(); // Call the updated email function
+        }
+      });
+
+
+
+
       setShowReorderPopup(false);
       fetchLowStockParts();
     } catch (error) {
