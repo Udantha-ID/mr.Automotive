@@ -168,7 +168,7 @@ const UpdatePayment = ({ isOpen, onClose, paymentData, onUpdate }) => {
                 ))}
               </select>
             </div>
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="text-dark block mb-2">Booking ID</label>
               <select
                 className="w-full p-2 border border-dark rounded"
@@ -183,7 +183,7 @@ const UpdatePayment = ({ isOpen, onClose, paymentData, onUpdate }) => {
                   </option>
                 ))}
               </select>
-            </div>
+            </div> */}
             <div className="mb-4">
               <label className="text-dark block mb-2">Customer Name</label>
               <input
@@ -249,11 +249,11 @@ const UpdatePayment = ({ isOpen, onClose, paymentData, onUpdate }) => {
               </select>
             </div>
             <div className="mb-4">
-              <label className="text-dark block mb-2">Payment Amount</label>
+              <label className="text-dark block mb-2">Payment Amount (Rs)</label>
               <input
                 type="number"
                 className="w-full p-2 border border-dark rounded"
-                value={Pamount}
+                value={parseFloat(Pamount).toFixed(2)}
                 readOnly
               />
             </div>

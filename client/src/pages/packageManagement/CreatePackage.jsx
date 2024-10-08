@@ -152,14 +152,19 @@ const CreatePackage = () => {
             <label className="text-dark block mb-2">Package Name</label>
             <input
               type="text"
-              className={classNames(
-                "w-full p-2 border rounded",
-                formErrors.pkgName ? "border-red-500" : "border-dark"
-              )}
+              className="w-full p-2 border rounded"
               value={pkgName}
-              onChange={(e) => setPkgName(e.target.value)}
+              onChange={(e) => {
+                const textOnlyRegex = /^[A-Za-z\s]*$/;
+                const inputValue = e.target.value;
+
+                if (textOnlyRegex.test(inputValue)) {
+                  setPkgName(inputValue);
+                }
+              }}
               required
             />
+
             {formErrors.pkgName && (
               <span className="text-red-500 text-sm">{formErrors.pkgName}</span>
             )}
@@ -183,13 +188,14 @@ const CreatePackage = () => {
               className={classNames("w-full p-2 border rounded")}
               value={pkgExp}
               onChange={(e) => setPkgExp(e.target.value)}
+              min={new Date().toISOString().split("T")[0]} // prevents past dates
               required
             />
             {formErrors.pkgName && (
               <span className="text-red-500 text-sm">{formErrors.pkgName}</span>
             )}
           </div>
-          
+
           <div className="flex space-x-4 mb-4">
             <div className="w-1/2">
               <label className="text-dark block mb-2">Price</label>
@@ -207,7 +213,7 @@ const CreatePackage = () => {
                   }
                 }}
                 min="0"
-                step="0.01" 
+                step="0.01"
                 required
               />
               {formErrors.pkgPrice && (
@@ -220,43 +226,61 @@ const CreatePackage = () => {
 
           <div className="mb-4">
             <label className="text-dark block mb-2">Services</label>
-            {pkgServ.map((pkg) => (
-              <div key={pkg.id} className="mb-2 flex items-center">
-                <input
-                  type="text"
-                  className="w-1/2 p-2 border border-dark rounded"
-                  placeholder="Service Id"
-                  value={pkg.key}
-                  onChange={(e) =>
-                    handleServiceChange(pkg.id, "key", e.target.value)
-                  }
-                />
-                <input
-                  type="text"
-                  className="w-1/2 p-2 border border-dark rounded ml-2"
-                  placeholder="Service Name"
-                  value={pkg.name}
-                  onChange={(e) =>
-                    handleServiceChange(pkg.id, "name", e.target.value)
-                  }
-                />
-                <button
-                  type="button"
-                  className="ml-2 text-red-500"
-                  onClick={() => handleRemoveFeature(pkg.id)}
-                >
-                  Remove
-                </button>
+            {pkgServ.map((pkg, index) => (
+              <div key={pkg.id}>
+                <div className="mb-2 flex items-center">
+                  <input
+                    type="text"
+                    className="w-1/2 p-2 border border-dark rounded"
+                    placeholder="Service Id"
+                    value={pkg.key}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (/^\d*$/.test(value)) {
+                        handleServiceChange(pkg.id, "key", value);
+                      }
+                    }}
+                  />
+
+                  <input
+                    type="text"
+                    className="w-1/2 p-2 border border-dark rounded ml-2"
+                    placeholder="Service Name"
+                    value={pkg.name}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (/^[A-Za-z\s]*$/.test(value)) {
+                        handleServiceChange(pkg.id, "name", value);
+                      }
+                    }}
+                  />
+
+                  <button
+                    type="button"
+                    className="ml-2 text-red-500"
+                    onClick={() => handleRemoveFeature(pkg.id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                {formErrors[`serviceName${index}`] && (
+                  <span className="text-red-500 text-sm">
+                    {formErrors[`serviceName${index}`]}
+                  </span>
+                )}
               </div>
             ))}
+
             <button
               type="button"
               className="text-blue-500"
               onClick={handleAddService}
             >
-              Add Feature
+              Add Service
             </button>
           </div>
+
           <div className="mb-4">
             <label className="text-dark block mb-2">Image</label>
             <input

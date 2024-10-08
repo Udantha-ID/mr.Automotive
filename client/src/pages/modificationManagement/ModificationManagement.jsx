@@ -238,15 +238,30 @@ const ModificationManagement = () => {
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               renderInput={(params) => <TextField {...params} />}
+              minDate={startDate}
             />
-            {startDate >= endDate && (
-              <p className="text-red-500 text-xs mt-1">
-                End date should greater than Start Date
-              </p>
-            )}
           </div>
+          {/* Error message for invalid date range */}
+          {startDate && endDate && endDate <= startDate && (
+            <p className="text-red-500 text-xs mt-1">
+              End date should be greater than Start Date
+            </p>
+          )}
+          <button
+            onClick={() => {
+              setStartDate(null);
+              setEndDate(null);
+            }}
+            className="mt-2 p-2 bg-gray-300 rounded hover:bg-gray-400"
+          >
+            Clear Dates
+          </button>
         </LocalizationProvider>
       </div>
+
+
+
+
 
       {/* Modification Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -369,13 +384,11 @@ const ModificationManagement = () => {
         >
           <div className="">
             <form onSubmit={handleOnSubmit}>
-              <div className=" bg-slate-200 p-6 text-black rounded-2xl shadow-sm">
+              <div className="bg-slate-200 p-6 text-black rounded-2xl shadow-sm">
                 <h1 className="text-3xl font-bold mb-4">Spare Part Request</h1>
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex flex-col mb-4 w-1/2">
-                    <label className="block text-gray-700 required">
-                      Item Name:
-                    </label>
+                    <label className="block text-gray-700 required">Item Name:</label>
                     <select
                       className="border border-gray-300 text-black rounded-md p-2"
                       name="name"
@@ -397,16 +410,20 @@ const ModificationManagement = () => {
                   </div>
 
                   <div className="flex flex-col mb-4">
-                    <label className="block text-gray-700 required">
-                      Quantity:
-                    </label>
+                    <label className="block text-gray-700 required">Quantity:</label>
                     <input
                       type="number"
                       className="border border-gray-300 text-black rounded-md p-2 w-2/3"
                       placeholder="Quantity"
                       name="quantity"
                       value={item.quantity}
-                      onChange={handleOnChange}
+                      onChange={(e) => {
+                        const quantity = parseInt(e.target.value, 10);
+                        if (quantity > 0) {
+                          handleOnChange(e); // Only update if the value is positive
+                        }
+                      }}
+                      min="1" // HTML validation for positive numbers
                       required
                     />
                   </div>
@@ -429,7 +446,6 @@ const ModificationManagement = () => {
                   <thead>
                     <tr className="bg-gray-100">
                       <th className="py-2 px-4 border-b">Name</th>
-
                       <th className="py-2 px-4 border-b">Quantity</th>
                     </tr>
                   </thead>
@@ -437,7 +453,6 @@ const ModificationManagement = () => {
                     {pickList.map((item, index) => (
                       <tr key={index} className="border-b text-center">
                         <td className="py-2 px-4">{item.name}</td>
-
                         <td className="py-2 px-4">{item.quantity}</td>
                       </tr>
                     ))}
@@ -453,6 +468,7 @@ const ModificationManagement = () => {
               </button>
             </div>
           </div>
+
         </Modal>
       </div>
     </div>

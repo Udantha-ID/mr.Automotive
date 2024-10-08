@@ -205,7 +205,7 @@ const AddPaymentPage = () => {
 
   return (
     <div className="bg-PrimaryColor min-h-screen flex justify-center items-center p-4">
-      <div className="bg-SecondaryColor p-8 rounded-lg shadow-lg max-w-2xl w-full">
+      <div className="bg-BColor p-8 rounded-lg shadow-lg max-w-2xl w-full">
         <h2 className="text-dark text-3xl font-bold mb-6 bg-gray-800 text-white">Add Payment</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -224,7 +224,7 @@ const AddPaymentPage = () => {
               ))}
             </select>
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="text-dark block mb-2">Booking ID</label>
             <select
               className="w-full p-2 border border-dark rounded"
@@ -239,7 +239,7 @@ const AddPaymentPage = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
           <div className="mb-4">
             <label className="text-dark block mb-2">Customer Name</label>
             <input
@@ -305,11 +305,11 @@ const AddPaymentPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="text-dark block mb-2">Package Amount</label>
+            <label className="text-dark block mb-2">Package Amount (Rs.)</label>
             <input
               type="number"
               className="w-full p-2 border border-dark rounded"
-              value={Pamount}
+              value={parseFloat(Pamount).toFixed(2)}
               readOnly
             />
           </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Swal from "sweetalert2";
-import { storage, ref, uploadBytes, getDownloadURL } from "./../../firebase"; // Import from updated firebase.js
+import { storage, ref, uploadBytes, getDownloadURL } from "./../../firebase"; 
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -12,6 +12,7 @@ const UpdatePackage = () => {
   const [pkgDes, setPkgDes] = useState("");
   const [pkgPrice, setPkgPrice] = useState("");
   const [pkgImg, setPkgImg] = useState(null);
+  const [pkgExp, setPkgExp] = useState("");
   const [pkgServ, setPkgServ] = useState([]);
   const [imageURL, setImageURL] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,9 +26,12 @@ const UpdatePackage = () => {
           `http://localhost:3000/api/maintance/get/${id}`
         );
         const data = response.data;
+
+        // Set package data
         setPkgId(data.pkgID);
         setPkgName(data.pkgName);
         setPkgDes(data.pkgDes);
+        setPkgExp(data.pkgExp ? new Date(data.pkgExp).toISOString().split("T")[0] : "");
         setPkgPrice(data.pkgPrice);
         setPkgServ(data.pkgServ || []);
         setImageURL(data.imageURL || "");
@@ -133,6 +137,7 @@ const UpdatePackage = () => {
         pkgName,
         pkgDes,
         pkgPrice,
+        pkgExp,
         imageURL: imageUrl,
         pkgServ,
       });
@@ -156,8 +161,8 @@ const UpdatePackage = () => {
   };
 
   return (
-    <div className=" min-h-screen flex justify-center items-center p-4">
-      <div className=" p-8 rounded-lg shadow-lg max-w-2xl w-full">
+    <div className="min-h-screen flex justify-center items-center p-4">
+      <div className="p-8 rounded-lg shadow-lg max-w-2xl w-full">
         <h2 className="text-dark text-2xl font-bold mb-6">Update Package</h2>
         <form onSubmit={handleSubmit}>
           {/* Form fields */}
@@ -176,15 +181,24 @@ const UpdatePackage = () => {
             <label className="text-dark block mb-2">Package Name</label>
             <input
               type="text"
-              className="w-full p-2 border border-dark rounded"
+              className="w-full p-2 border rounded"
               value={pkgName}
-              onChange={(e) => setPkgName(e.target.value)}
+              onChange={(e) => {
+                const textOnlyRegex = /^[A-Za-z\s]*$/;
+                const inputValue = e.target.value;
+
+                if (textOnlyRegex.test(inputValue)) {
+                  setPkgName(inputValue);
+                }
+              }}
               required
             />
+
             {formErrors.pkgName && (
               <span className="text-red-500 text-sm">{formErrors.pkgName}</span>
             )}
           </div>
+
           <div className="mb-4">
             <label className="text-dark block mb-2">Description</label>
             <textarea
@@ -194,14 +208,40 @@ const UpdatePackage = () => {
               rows="3"
             />
           </div>
+
+          <div className="mb-4">
+            <label className="text-dark block mb-2">Expire Date</label>
+            <input
+              type="date"
+              className="w-full p-2 border rounded"
+              value={pkgExp}
+              onChange={(e) => setPkgExp(e.target.value)}
+              min={new Date().toISOString().split("T")[0]} 
+              required
+            />
+            {formErrors.pkgExp && (
+              <span className="text-red-500 text-sm">{formErrors.pkgExp}</span>
+            )}
+          </div>
+
           <div className="flex space-x-4 mb-4">
             <div className="w-1/2">
               <label className="text-dark block mb-2">Price</label>
               <input
                 type="number"
-                className="w-full p-2 border border-dark rounded"
+                className="w-full p-2 border rounded"
                 value={pkgPrice}
-                onChange={(e) => setPkgPrice(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+
+                  const isValid = /^\d*(\.\d{0,2})?$/.test(value);
+
+                  if (isValid && Number(value) >= 0) {
+                    setPkgPrice(value);
+                  }
+                }}
+                min="0"
+                step="0.01"
                 required
               />
               {formErrors.pkgPrice && (
@@ -215,30 +255,22 @@ const UpdatePackage = () => {
           <div className="mb-4">
             <label className="text-dark block mb-2">Services</label>
             {pkgServ.map((pkg, index) => (
-              <div>
-                <div key={pkg.id} className="mb-2 flex items-center">
+              <div key={pkg.id}>
+                <div className="mb-2 flex items-center">
                   <input
                     type="text"
                     className="w-1/2 p-2 border border-dark rounded"
-                    placeholder="Service Id"
-                    value={pkg.key}
-                    onChange={(e) =>
-                      handleServiceChange(pkg.id, "key", e.target.value)
-                    }
-                  />
-                  <input
-                    type="text"
-                    className="w-1/2 p-2 border border-dark rounded ml-2"
-                    placeholder="Service Name"
+                    placeholder={`Service Name #${index + 1}`}
                     value={pkg.name}
                     onChange={(e) =>
                       handleServiceChange(pkg.id, "name", e.target.value)
                     }
+                    required
                   />
                   <button
                     type="button"
-                    className="ml-2 text-red-500"
                     onClick={() => handleRemoveFeature(pkg.id)}
+                    className="ml-2 p-2 text-white bg-red-500 rounded"
                   >
                     Remove
                   </button>
@@ -252,25 +284,22 @@ const UpdatePackage = () => {
             ))}
             <button
               type="button"
-              className="text-blue-500"
               onClick={handleAddService}
+              className="p-2 bg-blue-500 text-white rounded"
             >
               Add Service
             </button>
           </div>
+
           <div className="mb-4">
-            <label className="text-dark block mb-2">Image</label>
-            <input
-              type="file"
-              className="w-full p-2 border border-dark rounded"
-              onChange={handleImageChange}
-            />
+            <label className="text-dark block mb-2">Upload Image</label>
+            <input type="file" onChange={handleImageChange} />
+            {pkgImg && <p>Image: {pkgImg.name}</p>}
           </div>
+
           <button
             type="submit"
-            className={`w-full p-2 border border-dark rounded ${
-              loading ? "bg-gray-500" : "bg-blue-500 text-white"
-            }`}
+            className="w-full p-2 bg-blue-500 text-white rounded"
             disabled={loading}
           >
             {loading ? "Updating..." : "Update Package"}

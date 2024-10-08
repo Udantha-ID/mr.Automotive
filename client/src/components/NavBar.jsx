@@ -33,7 +33,6 @@ const NavBar = () => {
           "Booking",
           "Service",
           "Product",
-          "FAQ",
           "Reg As Supplier",
         ].map((item) => (
           <li key={item} className="hover:text-yellow-400">
