@@ -238,7 +238,7 @@ const ModificationManagement = () => {
               value={endDate}
               onChange={(newValue) => setEndDate(newValue)}
               renderInput={(params) => <TextField {...params} />}
-              minDate={startDate} // Disable dates before the selected Start Date
+              minDate={startDate}
             />
           </div>
           {/* Error message for invalid date range */}
