@@ -171,7 +171,12 @@ const AddSparePartPage = () => {
               type="text"
               className="w-full p-2 border border-dark rounded"
               value={supplier}
-              onChange={(e) => setSupplier(e.target.value)}
+              onChange={(e) => {
+                const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                if (regex.test(e.target.value)) {
+                  setSupplier(e.target.value);
+                }
+              }}
               required
             />
           </div>
