@@ -8,8 +8,10 @@ export default {
         SecondaryColor: "#cccccc", // Mid Gray
         DarkColor: "#7f7f7f", // Darker Gray
         ExtraDarkColor: "#1a1a1a", // Near Black
-        PColor:"#c7dcde" ,
-        BColor:"#c7dcde"
+        PColor:"#d2d0d4  " ,
+        BColor:"#c7dcde",
+        green:"#e2ffe0",
+        red: "#ffcec8"
       },
     },
   },
