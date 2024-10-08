@@ -269,9 +269,12 @@ const AddSparePartPage = () => {
                   className="w-1/2 p-2 border border-dark rounded"
                   placeholder="Feature Key"
                   value={feature.key}
-                  onChange={(e) =>
-                    handleFeatureChange(feature.id, "key", e.target.value)
-                  }
+                  onChange={(e) => {
+                    const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                    if (regex.test(e.target.value)) {
+                      handleFeatureChange(feature.id, "key", e.target.value);
+                    }
+                  }}
                 />
                 <input
                   type="text"
