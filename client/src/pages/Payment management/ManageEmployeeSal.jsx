@@ -67,38 +67,48 @@ const ManageEmployeeSal = () => {
         setEditEmployee({ ...editEmployee, [e.target.name]: e.target.value });
     };
 
-    // Combined filter function for status and date range
-    const handleSearchChange = (e) => {
-        setSearchStatus(e.target.value);
-        filterSalaries(e.target.value, startDate, endDate);
-    };
+// Combined filter function for status and date range
+const handleSearchChange = (e) => {
+    setSearchStatus(e.target.value);
+    filterSalaries(e.target.value, startDate, endDate);
+};
 
-    const filterSalaries = (status, startDate, endDate) => {
-        let filtered = employeeSalaries;
+const filterSalaries = (status, startDate, endDate) => {
+    let filtered = employeeSalaries;
 
-        // Filter by status
-        if (status) {
-            filtered = filtered.filter((sal) => sal.status.toLowerCase() === status.toLowerCase());
-        }
+    // Filter by status
+    if (status) {
+        filtered = filtered.filter((sal) => sal.status.toLowerCase() === status.toLowerCase());
+    }
 
-        // Filter by date range
-        if (startDate && endDate) {
-            const start = new Date(startDate);
-            const end = new Date(endDate);
+    // Filter by date range
+    if (startDate && endDate) {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
 
-            filtered = filtered.filter((sal) => {
-                const formDate = new Date(sal.formDate);
-                return formDate >= start && formDate <= end;
-            });
-        }
+        filtered = filtered.filter((sal) => {
+            const formDate = new Date(sal.formDate);
+            return formDate >= start && formDate <= end;
+        });
+    }
 
-        setFilteredSalaries(filtered);
-    };
+    setFilteredSalaries(filtered);
+};
 
-    // Trigger filter when date changes
-    useEffect(() => {
-        filterSalaries(searchStatus, startDate, endDate);
-    }, [startDate, endDate]);
+// Trigger filter when date changes
+useEffect(() => {
+    filterSalaries(searchStatus, startDate, endDate);
+}, [startDate, endDate]);
+
+// Handle start date change and update end date's min attribute
+const handleStartDateChange = (e) => {
+    setStartDate(e.target.value);
+
+    // Clear end date if it's before the new start date
+    if (new Date(endDate) < new Date(e.target.value)) {
+        setEndDate("");
+    }
+};
 
     // Generate PDF report based on the filtered data
     const generateReport = () => {
@@ -123,13 +133,14 @@ const ManageEmployeeSal = () => {
         // Add the logo image
         if (companyLogoBase64) {
           doc.addImage(companyLogoBase64, 'PNG', 10, 10, 50, 20); // Adjust the dimensions as necessary
-      } // Adjust coordinates and size as needed
+      } 
+      // Adjust coordinates and size as needed
       
         doc.setFontSize(19).setFont('helvetica', 'bold').setTextColor('#4B9CD3');
         doc.text('Vehicle_Service Management', 105, 15, { align: 'center' });
       
         doc.setFont('helvetica', 'normal').setFontSize(18).setTextColor('#333');
-        doc.text('Request Item Details Report', 105, 25, { align: 'center' });
+        doc.text('Employee Salary Details Report', 105, 25, { align: 'center' });
       
         doc.setFont('helvetica', 'italic').setFontSize(12).setTextColor('#666');
         doc.text(`Report Generated Date: ${date}`, 105, 35, { align: 'center' });
@@ -201,6 +212,7 @@ const ManageEmployeeSal = () => {
                     onChange={(e) => setEndDate(e.target.value)} // Set end date
                     className="border p-2 rounded ml-2"
                     placeholder="To Date"
+                    min={startDate} // Prevent selecting a date before the start date
                 />
                 <button
                     onClick={generateReport}
@@ -245,9 +257,10 @@ const ManageEmployeeSal = () => {
                                 <td className="py-3 px-5">{sal.formDate}</td>
                                 <td className="py-3 px-5">{sal.toDate}</td>
                                 <td className="py-3 px-5">{sal.totalOtHours}</td>
-                                <td className="py-3 px-5">{sal.totalOtAmount}</td>
-                                <td className="py-3 px-5">{sal.basicSalary}</td>
-                                <td className="py-3 px-5">{sal.totalSalary}</td>
+                                <td className="py-3 px-5">Rs.{Number(sal.totalOtAmount).toFixed(2)}</td>
+                                <td className="py-3 px-5">Rs.{Number(sal.basicSalary).toFixed(2)}</td>
+                                <td className="py-3 px-5">Rs.{Number(sal.totalSalary).toFixed(2)}</td>
+
                                 <td className="py-3 px-5">{sal.status}</td>
                             </tr>
                         ))}
