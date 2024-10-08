@@ -67,14 +67,14 @@ const PaymentReport = () => {
 
     // Add report details
     doc.setFontSize(12);
-    doc.text(`Total Payments: $${totalPayments.toFixed(2)}`, 10, 50);
-    doc.text(`Average Payment: $${averagePayment.toFixed(2)}`, 10, 60);
+    doc.text(`Total Payments: Rs.${totalPayments.toFixed(2)}`, 10, 50);
+    doc.text(`Average Payment: Rs.${averagePayment.toFixed(2)}`, 10, 60);
 
     // Add table
     if (Array.isArray(paymentData)) {
       doc.autoTable({
         head: [
-          ["Payment ID", "Customer Name", "Vehicle Number", "Payment Date", "Payment Method", "Booking ID", "Package", "Amount"],
+          ["Payment ID", "Customer Name", "Vehicle Number", "Payment Date", "Payment Method","Package", "Amount"],
         ],
         body: paymentData.map((payment) => [
           payment.PaymentId,
@@ -82,9 +82,9 @@ const PaymentReport = () => {
           payment.Vehicle_Number,
           payment.PaymentDate,
           payment.PaymentMethod,
-          payment.Booking_Id,
+          // payment.Booking_Id,
           payment.Package || "N/A",
-          `$${(payment.Pamount || 0).toFixed(2)}`,
+          `Rs.${(payment.Pamount || 0).toFixed(2)}`,
         ]),
         startY: 70,
       });

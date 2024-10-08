@@ -136,7 +136,7 @@ const ShowPayment = () => {
                     <th className="py-3 px-5 text-left">Vehicle Number</th>
                     <th className="py-3 px-5 text-left">Payment Date</th>
                     <th className="py-3 px-5 text-left">Payment Method</th>
-                    <th className="py-3 px-5 text-left">Booking_Id</th>
+                    {/* <th className="py-3 px-5 text-left">Booking_Id</th> */}
                     <th className="py-3 px-5 text-left">Package</th>
                     <th className="py-3 px-5 text-left">Package Amount</th>
                     <th className="py-3 px-5 text-left">Customer Email</th>
@@ -163,14 +163,14 @@ const ShowPayment = () => {
                       <td className="py-3 px-5 text-ExtraDarkColor">
                         {payment.PaymentMethod}
                       </td>
-                      <td className="py-3 px-5 text-ExtraDarkColor">
+                      {/* <td className="py-3 px-5 text-ExtraDarkColor">
                         {payment.Booking_Id}
-                      </td>
+                      </td> */}
                       <td className="py-3 px-5 text-ExtraDarkColor">
                         {payment.Package}
                       </td>
                       <td className="py-3 px-5 text-extraDarkColor">
-                        {payment.Pamount}
+                      Rs.{payment.Pamount}
                       </td>
                       <td className="py-3 px-5 text-extraDarkColor">
                         {payment.email}
@@ -221,13 +221,13 @@ const ShowPayment = () => {
                           {sal.totalOtHours}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                          {sal.totalOtAmount}
+                        Rs.{sal.totalOtAmount}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                          {sal.basicSalary}
+                        Rs.{sal.basicSalary}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
-                          {sal.totalSalary}
+                        Rs.{sal.totalSalary}
                         </td>
                         <td className="py-3 px-5 text-ExtraDarkColor">
                           <select

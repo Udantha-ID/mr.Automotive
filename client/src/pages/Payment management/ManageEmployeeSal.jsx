@@ -245,9 +245,9 @@ const ManageEmployeeSal = () => {
                                 <td className="py-3 px-5">{sal.formDate}</td>
                                 <td className="py-3 px-5">{sal.toDate}</td>
                                 <td className="py-3 px-5">{sal.totalOtHours}</td>
-                                <td className="py-3 px-5">{sal.totalOtAmount}</td>
-                                <td className="py-3 px-5">{sal.basicSalary}</td>
-                                <td className="py-3 px-5">{sal.totalSalary}</td>
+                                <td className="py-3 px-5">Rs.{sal.totalOtAmount}</td>
+                                <td className="py-3 px-5">Rs.{sal.basicSalary}</td>
+                                <td className="py-3 px-5">Rs.{sal.totalSalary}</td>
                                 <td className="py-3 px-5">{sal.status}</td>
                             </tr>
                         ))}

@@ -166,7 +166,7 @@ const handleGeneratePDF = () => {
               <th className="py-3 px-5 text-left">Vehicle Number</th>
               <th className="py-3 px-5 text-left">Payment Date</th>
               <th className="py-3 px-5 text-left">Payment Method</th>
-              <th className="py-3 px-5 text-left">Booking ID</th>
+              {/* <th className="py-3 px-5 text-left">Booking ID</th> */}
               <th className="py-3 px-5 text-left">Package</th>
               <th className="py-3 px-5 text-left">Package Amount</th>
               <th className="py-3 px-5 text-left">Customer Email</th>
@@ -187,9 +187,9 @@ const handleGeneratePDF = () => {
                   <td className="py-3 px-5">{payment.Vehicle_Number}</td>
                   <td className="py-3 px-5">{payment.PaymentDate}</td>
                   <td className="py-3 px-5">{payment.PaymentMethod}</td>
-                  <td className="py-3 px-5">{payment.Booking_Id}</td>
+                  {/* <td className="py-3 px-5">{payment.Booking_Id}</td> */}
                   <td className="py-3 px-5">{payment.Package}</td>
-                  <td className="py-3 px-5">{payment.Pamount}</td>
+                  <td className="py-3 px-5">Rs.{payment.Pamount}</td>
                   <td className="py-3 px-5">{payment.email}</td>
                   <td className="py-3 px-5">
                     <div className="flex items-center">

@@ -224,7 +224,7 @@ const AddPaymentPage = () => {
               ))}
             </select>
           </div>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label className="text-dark block mb-2">Booking ID</label>
             <select
               className="w-full p-2 border border-dark rounded"
@@ -239,7 +239,7 @@ const AddPaymentPage = () => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
           <div className="mb-4">
             <label className="text-dark block mb-2">Customer Name</label>
             <input
@@ -305,7 +305,7 @@ const AddPaymentPage = () => {
             />
           </div>
           <div className="mb-4">
-            <label className="text-dark block mb-2">Package Amount</label>
+            <label className="text-dark block mb-2">Package Amount (Rs.)</label>
             <input
               type="number"
               className="w-full p-2 border border-dark rounded"
