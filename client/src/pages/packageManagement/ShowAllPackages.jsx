@@ -206,13 +206,13 @@ const ShowAllPackages = () => {
       {/* Inventory Table */}
       <div className="mt-12 bg-SecondaryColor p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold text-ExtraDarkColor mb-6">
-          Inventory Details
+          Maintenance Package Details
         </h2>
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
           <thead className="bg-DarkColor text-white">
             <tr>
-              <th className="py-3 px-5 text-left">Pkg Name</th>
-              <th className="py-3 px-5 text-left">Price</th>
+              <th className="py-3 px-5 text-left">Package Name</th>
+              <th className="py-3 px-5 text-left">Price(Rs)</th>
               <th className="py-3 px-5 text-left">Services</th>
               <th className="py-3 px-5 text-left">Action</th>
               <th className="py-3 px-5 text-left">Request</th>

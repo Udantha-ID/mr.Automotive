@@ -189,17 +189,25 @@ const CreatePackage = () => {
               <span className="text-red-500 text-sm">{formErrors.pkgName}</span>
             )}
           </div>
+          
           <div className="flex space-x-4 mb-4">
             <div className="w-1/2">
               <label className="text-dark block mb-2">Price</label>
               <input
                 type="number"
-                className={classNames(
-                  "w-full p-2 border rounded",
-                  formErrors.pkgPrice ? "border-red-500" : "border-dark"
-                )}
+                className="w-full p-2 border rounded"
                 value={pkgPrice}
-                onChange={(e) => setPkgPrice(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+
+                  const isValid = /^\d*(\.\d{0,2})?$/.test(value);
+
+                  if (isValid && Number(value) >= 0) {
+                    setPkgPrice(value);
+                  }
+                }}
+                min="0"
+                step="0.01" 
                 required
               />
               {formErrors.pkgPrice && (
