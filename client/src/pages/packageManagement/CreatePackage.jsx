@@ -25,7 +25,7 @@ const CreatePackage = () => {
   const [imageURL, setImageURL] = useState("");
   const [loading, setLoading] = useState(false);
   const [formErrors, setFormErrors] = useState({});
-  const [descriptionWordCount, setDescriptionWordCount] = useState(100); // Initialize word count
+  const [descriptionWordCount, setDescriptionWordCount] = useState(100); 
 
   const handleAddService = () => {
     setPkgServ([...pkgServ, { id: uuidv4(), key: "", value: "" }]);
@@ -192,7 +192,7 @@ const CreatePackage = () => {
               className={classNames("w-full p-2 border rounded")}
               value={pkgExp}
               onChange={(e) => setPkgExp(e.target.value)}
-              min={new Date().toISOString().split("T")[0]} // prevents past dates
+              min={new Date().toISOString().split("T")[0]} 
               required
             />
             {formErrors.pkgName && (

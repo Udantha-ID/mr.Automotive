@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import PackageReport from "./PackageReport"; // Import the new component
+import PackageReport from "./PackageReport"; 
 
 const ShowAllPackages = () => {
   const navigate = useNavigate();
@@ -14,9 +14,9 @@ const ShowAllPackages = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filteredPkg, setFilteredPkg] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [sparePart, setSparePart] = useState([]); // Added state for spare parts
-  const [pickList, setPickList] = useState([]); // Added state for pickList
-  const [item, setItem] = useState({ name: "", quantity: 0 }); // Added state for item
+  const [sparePart, setSparePart] = useState([]); 
+  const [pickList, setPickList] = useState([]); 
+  const [item, setItem] = useState({ name: "", quantity: 0 }); 
 
   const handleUpdateClick = (id) => {
     navigate(`/admin/upd/${id}`);
@@ -111,11 +111,11 @@ const ShowAllPackages = () => {
     }));
   };
 
-  // Define handleOnSubmit function
+  
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setPickList((prevList) => [...prevList, item]);
-    setItem({ name: "", quantity: 0 }); // Reset the form fields after submission
+    setItem({ name: "", quantity: 0 }); 
   };
 
   const handleRequest = async () => {
@@ -202,7 +202,7 @@ const ShowAllPackages = () => {
         </motion.div>
       </div>
 
-      {/* Inventory Table */}
+      {/* Maintenance package Table */}
       <div className="mt-12 bg-SecondaryColor p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold text-ExtraDarkColor mb-6">
           Maintenance Package Details
@@ -307,11 +307,11 @@ const ShowAllPackages = () => {
                         const value = e.target.value;
                         // Check if the value is a positive integer
                         if (/^\d+$/.test(value) || value === "") {
-                          handleOnChange(e); // Only allow positive integers
+                          handleOnChange(e); 
                         }
                       }}
-                      min="0" // Prevent negative numbers
-                      step="1" // Prevent decimals
+                      min="0" 
+                      step="1"
                       required
                     />
                   </div>
