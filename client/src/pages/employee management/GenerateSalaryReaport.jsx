@@ -129,12 +129,12 @@ const GenerateReports = () => {
 
       {/* Download options */}
       <div className="mb-6">
-        <button
-          className="p-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-800 mr-4"
-          onClick={generatePDF}
-        >
-          Download PDF
-        </button>
+      <button
+      className="p-3 bg-green-500 text-white rounded-lg shadow hover:bg-green-800 mr-4"
+      onClick={generatePDF}
+    >
+      Download PDF
+    </button>
         <button
           className="p-3 bg-gray-600 text-white rounded-lg shadow hover:bg-gray-800"
           onClick={generateCSV}

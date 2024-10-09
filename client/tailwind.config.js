@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    './src/**/*.html',
+    './src/**/*.js',
+    './src/**/*.jsx',
+    './src/**/*.ts',
+    './src/**/*.tsx',
+  ],
   theme: {
     extend: {
       colors: {
@@ -10,7 +16,7 @@ export default {
         ExtraDarkColor: "#1a1a1a", // Near Black
         PColor:"#d2d0d4  " ,
         BColor:"#c7dcde",
-        green:"#e2ffe0",
+        // green:"#e2ffe0",
         red: "#ffcec8"
       },
     },
