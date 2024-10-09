@@ -10,8 +10,8 @@ export default {
         ExtraDarkColor: "#1a1a1a", // Near Black
         PColor:"#d2d0d4  " ,
         BColor:"#c7dcde",
-        green:"#e2ffe0",
-        red: "#ffcec8"
+        greee:"#e2ffe0",
+        reee: "#ffcec8"
       },
     },
   },

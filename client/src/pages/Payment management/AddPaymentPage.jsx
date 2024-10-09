@@ -26,9 +26,9 @@ const AddPaymentPage = () => {
 
   const sendEmailToCustomer = () => {
     const emailConfig = {
-      serviceID: "service_3p901v6",
-      templateID: "template_cwl7ahv",
-      userID: "-r5ctVwHjzozvGIfg",
+      serviceID: "service_zgnhfla",
+      templateID: "template_tlzh912",
+      userID: "vS4-fXR-yhzGRdmyW",
     };
 
     emailjs
