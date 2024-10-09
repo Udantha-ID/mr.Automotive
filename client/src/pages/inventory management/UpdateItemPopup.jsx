@@ -199,6 +199,7 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                   <option value="Pack Of">Pack Of</option>
                   <option value="Bottle Of">Bottle Of</option>
                   <option value="Pair Of">Pair Of</option>
+                  <option value="one Piece"> 1 Piece</option>
                 </select>
               </div>
 

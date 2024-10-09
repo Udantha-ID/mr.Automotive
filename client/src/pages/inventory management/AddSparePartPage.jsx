@@ -249,6 +249,7 @@ const AddSparePartPage = () => {
               <option value="Pack Of">Pack Of</option>
               <option value="Bottle Of">Bottle Of</option>
               <option value="Pair Of">Pair Of</option>
+              <option value="one Pieces"> 1 Piece</option>
             </select>
           </div>
           <div className="mb-4">
