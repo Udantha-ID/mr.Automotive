@@ -130,7 +130,12 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                   type="text"
                   className="w-full p-2 border border-dark rounded"
                   value={partName}
-                  onChange={(e) => setPartName(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                    if (regex.test(e.target.value)) {
+                      setPartName(e.target.value);
+                    }
+                  }}
                   required
                 />
               </div>
@@ -140,7 +145,12 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                   type="text"
                   className="w-full p-2 border border-dark rounded"
                   value={supplier}
-                  onChange={(e) => setSupplier(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                    if (regex.test(e.target.value)) {
+                      setSupplier(e.target.value);
+                    }
+                  }}
                   required
                 />
               </div>
@@ -151,7 +161,13 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                     type="number"
                     className="w-full p-2 border border-dark rounded"
                     value={price}
-                    onChange={(e) => setPrice(e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const regex = /^\d+(\.\d{0,2})?$/; // Only numbers with up to two decimal places
+                      if (regex.test(value)) {
+                        setPrice(value);
+                      }
+                    }}
                     required
                   />
                 </div>
@@ -161,7 +177,13 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                     type="number"
                     className="w-full p-2 border border-dark rounded"
                     value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const regex = /^[0-9]*$/; // Only whole positive numbers
+                      if (regex.test(value)) {
+                        setQuantity(value);
+                      }
+                    }}
                     required
                   />
                 </div>
@@ -172,7 +194,12 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                   type="text"
                   className="w-full p-2 border border-dark rounded"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                    if (regex.test(e.target.value)) {
+                      setCategory(e.target.value);
+                    }
+                  }}
                   required
                 />
               </div>
@@ -221,10 +248,14 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                       className="w-1/2 p-2 border border-dark rounded"
                       placeholder="Feature Key"
                       value={feature.key}
-                      onChange={(e) =>
-                        handleFeatureChange(feature.id, "key", e.target.value)
-                      }
+                      onChange={(e) => {
+                        const regex = /^[A-Za-z\s]*$/; // Only letters and spaces
+                        if (regex.test(e.target.value)) {
+                          handleFeatureChange(feature.id, "key", e.target.value);
+                        }
+                      }}
                     />
+
                     <input
                       type="text"
                       className="w-1/2 p-2 border border-dark rounded ml-2"
@@ -236,7 +267,7 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                     />
                     <button
                       type="button"
-                      className="ml-2 text-red-500"
+                      className="ml-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition duration-200"
                       onClick={() => handleRemoveFeature(feature.id)}
                     >
                       Remove
@@ -245,7 +276,7 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
                 ))}
                 <button
                   type="button"
-                  className="text-blue-500"
+                  className="mt-2 px-6 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition duration-200"
                   onClick={handleAddFeature}
                 >
                   Add Feature
@@ -261,9 +292,8 @@ const UpdateItemPopup = ({ isOpen, onClose, partData }) => {
               </div>
               <button
                 type="submit"
-                className={`w-full p-2 border border-dark rounded ${
-                  loading ? "bg-gray-500" : "bg-blue-500 text-white"
-                }`}
+                className={`w-full p-2 border border-dark rounded ${loading ? "bg-gray-500" : "bg-blue-500 text-white"
+                  }`}
                 disabled={loading}
               >
                 {loading ? "Updating..." : "Update Spare Part"}
