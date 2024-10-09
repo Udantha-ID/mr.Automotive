@@ -16,7 +16,7 @@ const AddEmployeeSalary = () => {
     const [totalOThours, settotalOThours] = useState('');
     const [totalOTpay, settotalOTpay] = useState('');
     const [epfAmount, setEpfAmount] = useState('');
-    // const [etfAmount, setEtfAmount] = useState('');
+    const [etfAmount, setEtfAmount] = useState('');
     const [BasicSalary, setBasicSalary] = useState('');
     const [totalSalary, setTotalSalary] = useState('');
     const [employees, setEmployees] = useState([]);
@@ -125,6 +125,8 @@ const AddEmployeeSalary = () => {
     const calculateTotalSalary = () => {
         let totalSalary = totalOTpay + parseFloat(BasicSalary);
         let epfAmount = 0;
+        let etfAmount = 0;
+
     
         // Fetch employee attendance by NIC and date range
         axios.get(`http://localhost:3000/EmployeeAttendence/date_range/${selectEmployee.NIC}`, {
@@ -144,11 +146,19 @@ const AddEmployeeSalary = () => {
     
         // If EPF is included, calculate EPF amount
         if (includeEPF) {
- 
+            
+            etfAmount = BasicSalary * 0.03;
             epfAmount = BasicSalary * 0.08;
-            totalSalary -= epfAmount;
+
+            totalSalary -= (etfAmount+epfAmount);
         }
 
+        console.log("ETF",etfAmount);
+        console.log("EPF",epfAmount);
+        console.log("Total salary",totalSalary);
+
+
+        setEtfAmount(etfAmount);
         setTotalSalary(totalSalary);  
         setEpfAmount(epfAmount);  
     };
@@ -186,6 +196,7 @@ const AddEmployeeSalary = () => {
             totalOThours,
             totalOTpay,
             epfAmount: epfAmount,
+            etfAmount : etfAmount,
             basicSalary: BasicSalary,
             totalSalary,
         };

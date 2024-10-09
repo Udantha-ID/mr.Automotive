@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 
 // const employeeSalarySchema = new mongoose.Schema({
@@ -56,7 +57,10 @@ const employeeSalarySchema = mongoose.Schema({
     epfAmount:{
         type:Number
     },
-    
+    etfAmount:{
+        type:Number
+    },
+
     status:{
         type:String,
         enum:['pending','approved','declined'],

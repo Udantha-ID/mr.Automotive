@@ -32,6 +32,7 @@ rout.post('/', async (req, res) => {
             basicSalary: req.body.basicSalary,
             totalSalary: req.body.totalSalary,
             epfAmount: req.body.epfAmount,
+            etfAmount: req.body.etfAmount,
             status: req.body.status, 
 
         };
