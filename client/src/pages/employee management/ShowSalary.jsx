@@ -79,13 +79,16 @@ const ShowEmployee = () => {
     doc.text(`Total Salary: ${formatSalary(Salary.totalSalary)}`, 20, 170);
 
     doc.save(`${Salary.employeeName}_SalarySlip.pdf`);
+
+
+    doc.text("Employee Manager Signature: ____________________", 10, doc.internal.pageSize.height - 20);
 };
 
 
   return (
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-4">
-        {Salary?.employeeName} Salary Details
+        {Salary?.employeeName} Salary Details Slips.
       </h1>
       {loading ? (
         <Spinner />

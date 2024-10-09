@@ -161,7 +161,8 @@ const GenerateReports = () => {
                   <th className="py-2 px-4">From Date</th>
                   <th className="py-2 px-4">To Date</th>
                   <th className="py-2 px-4">OT Hours</th>
-                  <th className="py-2 px-4">EPF Amount</th>
+                  <th className="py-2 px-4">EPF</th>
+                  <th className="py-2 px-4">ETF</th>
                   <th className="py-2 px-4">OT Amount</th>
                   <th className="py-2 px-4">Basic Salary</th>
                   <th className="py-2 px-4">Total Salary</th>
@@ -176,6 +177,7 @@ const GenerateReports = () => {
                     <td className="py-2 px-4">{salary.toDate}</td>
                     <td className="py-2 px-4">{salary.totalOtHours} Hours</td>
                     <td className="py-2 px-4">Rs:{salary.epfAmount}</td>
+                    <td className="py-2 px-4">Rs:{salary.etfAmount}</td>
                     <td className="py-2 px-4">Rs:{salary.totalOtAmount}</td>
                     <td className="py-2 px-4">Rs:{salary.basicSalary}</td>
                     <td className="py-2 px-4">Rs:{salary.totalSalary}</td>
