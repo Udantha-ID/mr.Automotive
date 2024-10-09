@@ -204,7 +204,7 @@ const ShowPayment = () => {
                       <tr
                         key={sal._id}
                         className={`border-b hover:bg-PColor transition-colors duration-300 ${
-                          sal.status === "approved" ? "bg-green" : sal.status === "declined" ? "bg-red" : ""
+                          sal.status === "approved" ? "bg-greee" : sal.status === "declined" ? "bg-reee" : ""
                         }`}
                       >
                         
