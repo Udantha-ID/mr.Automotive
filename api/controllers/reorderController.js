@@ -87,3 +87,21 @@ export const updateReorderStatus = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+export const deleteReorderRequest = async (req, res) => {
+  const { id } = req.params;  // Get the reorderRequestId from the URL params
+
+  try {
+    // Find the reorder request by its ID and delete it
+    const deletedReorder = await ReorderRequest.findByIdAndDelete(id);
+
+    if (!deletedReorder) {
+      return res.status(404).json({ message: "Reorder request not found" });
+    }
+
+    res.status(200).json({ message: "Reorder request deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
